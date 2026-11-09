@@ -425,20 +425,21 @@
 <div class="modal" id="apply" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
   <form id="applyForm">
     <h3 id="applyTitle">크리에이터 지원</h3>
-    <p class="sub">아래 내용을 적고 보내기를 누르면 메일 앱이 열립니다.</p>
+    <p class="sub">적고 보내기만 누르면 끝. 확인 후 남겨 주신 연락처로 연락드립니다.</p>
     <div class="row2">
       <div><label for="a1">이름</label><input id="a1" name="이름" required></div>
       <div><label for="a2">나이</label><input id="a2" name="나이" inputmode="numeric" required></div>
     </div>
     <div class="row2">
-      <div><label for="a3">지역</label><input id="a3" name="지역" required></div>
+      <div><label for="a3">지역</label><input id="a3" name="지역"></div>
       <div><label for="a4">연락처</label><input id="a4" name="연락처" placeholder="전화번호 또는 카톡 ID" required></div>
     </div>
     <label for="a5">방송 가능 시간</label><input id="a5" name="방송 가능 시간" placeholder="예: 평일 밤 9시~12시">
     <label for="a6">방송 경험 · 채널 링크</label><input id="a6" name="방송 경험·채널 링크" placeholder="없으면 비워 두세요">
     <label for="a7">간단한 자기소개</label><textarea id="a7" name="자기소개"></textarea>
-    <div class="btns"><button type="button" id="applyClose">닫기</button><button type="submit" class="go">보내기</button></div>
-    <p class="note">지원서는 thematch.std@gmail.com 으로 전달됩니다.</p>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+    <div class="btns"><button type="button" id="applyClose">닫기</button><button type="submit" class="go" id="applySend">보내기</button></div>
+    <p class="note" id="applyMsg">이름·나이·연락처만 적어도 지원할 수 있어요.</p>
   </form>
 </div>
 
@@ -468,7 +469,7 @@ $("copyId").addEventListener("click", () => {
 });
 
 
-// 크리에이터 지원서: 서버가 없어서 메일 앱으로 보낸다
+// 크리에이터 지원서: 서버가 없어서 FormSubmit 이 회사 메일함으로 넘겨 준다
 const modal = $("apply");
 const openApply = (e) => { e.preventDefault(); modal.classList.add("open"); $("a1").focus(); };
 document.querySelectorAll("[data-apply]").forEach((a) => a.addEventListener("click", openApply));
@@ -477,11 +478,31 @@ $("applyClose").addEventListener("click", closeApply);
 modal.addEventListener("click", (e) => { if (e.target === modal) closeApply(); });
 addEventListener("keydown", (e) => { if (e.key === "Escape") closeApply(); });
 if (location.hash === "#apply") modal.classList.add("open");
-$("applyForm").addEventListener("submit", (e) => {
+$("applyForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const f = new FormData(e.target);
-  const body = [...f.entries()].map(([k, v]) => k + ": " + v).join("\n");
-  location.href = "mailto:thematch.std@gmail.com?subject=" + encodeURIComponent("[크리에이터 지원] " + f.get("이름")) + "&body=" + encodeURIComponent(body);
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form));
+  data._subject = "[크리에이터 지원] " + data["이름"];
+  data._template = "table";
+  const send = $("applySend"), msg = $("applyMsg");
+  send.disabled = true;
+  send.textContent = "보내는 중…";
+  try {
+    const r = await fetch("https://formsubmit.co/ajax/thematch.std@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!r.ok) throw new Error(r.status);
+    form.reset();
+    send.textContent = "지원 완료";
+    msg.textContent = "지원서가 접수됐어요. 확인 후 연락드릴게요.";
+    msg.style.color = "var(--red)";
+  } catch (err) {
+    send.disabled = false;
+    send.textContent = "보내기";
+    msg.textContent = "전송이 안 됐어요. 잠시 후 다시 눌러 주세요.";
+  }
 });
 </script>
 </body>
