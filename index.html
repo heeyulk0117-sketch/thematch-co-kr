@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>더매치</title>
+<meta name="description" content="더매치컴퍼니는 라이브 방송, 크리에이터 채널 네트워크, 숏폼 콘텐츠, 브랜드 파트너십을 아우르는 미디어 컴퍼니입니다.">
+<meta property="og:title" content="더매치">
+<meta property="og:site_name" content="더매치">
+<meta name="application-name" content="더매치">
+<meta property="og:description" content="Live · Creator Network · Short-form · Brand Partnership">
+<meta property="og:image" content="https://thematch.co.kr/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thematch.co.kr/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="tmc-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  /* 규모 있는 미디어 회사처럼(사용자 11-08): 흰 바탕 + 큰 글씨 + 검은 첫 화면, 강조색은 빨강 하나만 */
+  :root { --ink: #0a0a0a; --paper: #ffffff; --soft: #f4f4f5; --line: #e4e4e7; --mute: #6b6b74; --red: #ff2d55; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 16px/1.7 "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+         letter-spacing: -0.015em; word-break: keep-all; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .en { font-weight: 800; letter-spacing: 0.02em; }
+
+  /* 메뉴: 첫 화면 위에서는 투명, 내려가면 흰색 */
+  header { position: fixed; inset: 0 0 auto; z-index: 20; color: #fff; transition: background .25s, color .25s, border-color .25s; border-bottom: 1px solid transparent; }
+  header.solid { background: rgba(255, 255, 255, .96); color: var(--ink); border-color: var(--line); backdrop-filter: blur(10px); }
+  header .wrap { display: flex; align-items: center; gap: 40px; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand .tmc { height: 24px; width: auto; display: block; }
+  .brand .en { font-size: 22px; letter-spacing: 0.1em; white-space: nowrap; }
+  .brand .ko { font-size: 13px; font-weight: 600; opacity: .6; white-space: nowrap; padding-left: 12px; border-left: 1px solid currentColor; }
+  nav { display: flex; gap: 36px; margin-left: auto; font-weight: 700; font-size: 15px; }
+  nav a { opacity: .85; }
+  nav a:hover { opacity: 1; }
+  nav a small { display: block; font-size: 11px; font-weight: 600; opacity: .55; letter-spacing: .06em; line-height: 1.1; }
+  .hbtn { padding: 10px 18px; border-radius: 99px; font-size: 14px; font-weight: 700; border: 1px solid currentColor; white-space: nowrap; }
+
+  /* 첫 화면 */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; background: var(--ink); overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; background: url(img/studio.jpg) center 40% / cover; opacity: .55; transform: scale(1.08); animation: drift 24s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: scale(1.18) translateX(-2%); } }
+  .hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--ink) 4%, rgba(10,10,10,.35) 60%, rgba(10,10,10,.65)); }
+  .hero .wrap { position: relative; width: 100%; padding-bottom: 84px; }
+  .hero .kicker { font-size: 14px; letter-spacing: .3em; opacity: .7; }
+  .hero h1 { margin: 18px 0 26px; font-size: clamp(44px, 8.4vw, 116px); line-height: 1.02; font-weight: 800; letter-spacing: -0.045em; }
+  .hero h1 em { font-style: normal; color: var(--red); }
+  .hero .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.2); padding-top: 26px; }
+  .hero p { margin: 0; max-width: 560px; font-size: clamp(16px, 1.8vw, 19px); opacity: .85; }
+  .live { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 99px; background: var(--red); color: #fff; font-weight: 700; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+
+  /* 흐르는 글씨 띠 */
+  .marquee { background: var(--red); color: #fff; overflow: hidden; white-space: nowrap; padding: 16px 0; }
+  .marquee div { display: inline-block; animation: flow 30s linear infinite; font-size: 20px; }
+  .marquee span { margin: 0 28px; }
+  @keyframes flow { to { transform: translateX(-50%); } }
+
+  section { padding: 140px 0; }
+  .head { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 64px; }
+  .label { font-size: 13px; letter-spacing: .24em; color: var(--mute); padding-top: 14px; }
+  .label b { display: block; color: var(--red); font-size: 13px; margin-bottom: 6px; }
+  h2 { margin: 0; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.15; font-weight: 800; letter-spacing: -0.04em; }
+  .head p { margin: 22px 0 0; color: var(--mute); font-size: 18px; max-width: 680px; }
+
+  /* 회사 */
+  .shots { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; height: clamp(320px, 42vw, 560px); margin-bottom: 56px; }
+  .shots div { border-radius: 18px; background: center / cover no-repeat #18181b; }
+  .shots .a { grid-row: 1 / 3; background-image: url(img/hq.jpg); background-position: center 40%; }
+  .shots .b { background-image: url(img/edit.jpg); }
+  .shots .c { background-image: url(img/studio.jpg); }
+  .vision { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); }
+  .vision div { padding: 32px 32px 0 0; }
+  .vision b { display: block; font-size: 22px; margin-bottom: 8px; }
+  .vision .en { color: var(--red); font-size: 13px; letter-spacing: .2em; }
+  .vision p { margin: 0; color: var(--mute); }
+
+  /* 사업 */
+  .biz { background: var(--soft); }
+  .divs { border-top: 2px solid var(--ink); }
+  .div { display: grid; grid-template-columns: 60px 200px 1.1fr 1.4fr auto; gap: 28px; align-items: center; padding: 34px 0; border-bottom: 1px solid #d4d4d8; transition: padding .2s; }
+  .div:hover { padding-left: 12px; }
+  .div .th { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; display: block; }
+  .div .no { font-size: 15px; color: var(--mute); font-weight: 700; }
+  .div h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); letter-spacing: -0.03em; line-height: 1.25; }
+  .div h3 small { display: block; font-size: 13px; color: var(--red); letter-spacing: .18em; font-weight: 800; margin-bottom: 4px; }
+  .div p { margin: 0; color: var(--mute); }
+  .div .arrow { font-size: 26px; color: #a1a1aa; }
+
+  /* 대표 IP */
+  .studio { background: var(--ink); color: #fff; padding-bottom: 0; }
+  .studio .label, .studio .head p { color: #a1a1aa; }
+  .gal { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 14px; }
+  .gal figure { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: center / cover no-repeat #18181b; }
+  .gal figure:first-child { grid-row: 1 / 3; }
+  .gal figcaption { position: absolute; left: 18px; bottom: 16px; font-size: 12px; font-weight: 800; letter-spacing: .2em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .ip { background: var(--ink); color: #fff; }
+  .ip .label { color: #a1a1aa; }
+  .ip .head p { color: #a1a1aa; }
+  .ipCard { display: grid; grid-template-columns: 1.3fr 1fr; border-radius: 24px; overflow: hidden; background: #161618; }
+  .ipCard .pic { min-height: 380px; background: url(logo.png) center / 220px no-repeat, radial-gradient(circle at center, rgba(255,45,85,.35), transparent 65%), #0f0f12; }
+  .ipCard .txt { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+  .ipCard .txt img { width: 72px; height: 72px; border-radius: 50%; margin-bottom: 20px; }
+  .ipCard h3 { margin: 0 0 10px; font-size: 34px; letter-spacing: -0.03em; }
+  .ipCard p { margin: 0 0 28px; color: #c4c4cc; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tags span { padding: 6px 14px; border-radius: 99px; border: 1px solid #3f3f46; font-size: 13px; color: #d4d4d8; }
+
+  /* 크리에이터 */
+  .crs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+  .cr { display: block; text-align: center; }
+  .cr .ph { position: relative; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--soft); transition: transform .25s; }
+  .cr:hover .ph { transform: translateY(-6px); }
+  .cr .ini { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
+  .cr.on .ph { outline: 4px solid var(--red); outline-offset: 4px; }
+  .cr .pill { display: none; position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); background: var(--red); color: #fff; font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 4px; }
+  .cr.on .pill { display: block; }
+  .cr b { display: block; margin-top: 16px; font-size: 18px; }
+  .cr span { color: var(--mute); font-size: 14px; }
+
+  /* 채용 */
+  .careers { background: var(--soft); }
+  .cgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .job { padding: 40px; border-radius: 24px; background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .job .st { align-self: flex-start; padding: 4px 12px; border-radius: 99px; background: var(--red); color: #fff; font-size: 13px; font-weight: 800; }
+  .job h3 { margin: 18px 0 10px; font-size: 28px; letter-spacing: -0.03em; }
+  .job p { margin: 0 0 20px; color: var(--mute); }
+  .job ul { margin: 0 0 28px; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .job li { padding-left: 22px; position: relative; }
+  .job li::before { content: ""; position: absolute; left: 0; top: 11px; width: 10px; height: 2px; background: var(--red); }
+  .job .how { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); color: var(--mute); font-size: 15px; }
+
+  /* 문의 */
+  .contact { background: var(--ink); color: #fff; }
+  .contact .label { color: #a1a1aa; }
+  .cts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #3f3f46; }
+  .cts div { padding: 32px 32px 0 0; }
+  .cts b { display: block; font-size: 20px; margin-bottom: 6px; }
+  .cts p { margin: 0; color: #a1a1aa; }
+  .kid { display: inline-flex; align-items: center; gap: 10px; margin-top: 56px; border: 0; border-radius: 99px; padding: 8px 26px 8px 9px; background: #fee500;
+         color: #3a1d1d; font-size: 26px; font-weight: 900; line-height: 1; cursor: pointer; }
+  .kid svg { width: 46px; height: 42px; flex: none; font-family: "Pretendard Variable", Pretendard, Arial, sans-serif; }
+  .kidNote { margin-left: 14px; color: #a1a1aa; font-size: 15px; }
+
+  /* 회사 정보(노란 글씨 = 법인 정보가 정해지면 바꿀 자리) */
+  footer { background: var(--ink); color: #a1a1aa; font-size: 13px; line-height: 1.9; border-top: 1px solid #27272a; }
+  footer .wrap { padding-top: 48px; padding-bottom: 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+  footer .brand { color: #fff; margin-bottom: 16px; }
+  footer .brand .tmc { height: 22px; }
+  footer .info span { white-space: nowrap; }
+  footer .info span + span::before { content: ""; display: inline-block; width: 1px; height: 10px; background: #3f3f46; margin: 0 12px; }
+  footer .links { display: flex; gap: 24px; color: #d4d4d8; font-weight: 600; }
+  .todo { color: #facc15; font-weight: 600; }
+
+  @media (max-width: 980px) {
+    nav { display: none; }
+    .hbtn { margin-left: auto; }
+    .head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 44px; }
+    .label { padding-top: 0; }
+    .div { grid-template-columns: 56px 1fr; }
+    .div .th { grid-column: 2; max-width: 420px; }
+    .div p { grid-column: 2; }
+    .div .arrow { display: none; }
+    .ipCard, .cgrid { grid-template-columns: 1fr; }
+    .ipCard .pic { min-height: 200px; }
+    .crs { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    header .wrap { height: 64px; gap: 14px; }
+    .hbtn { padding: 8px 12px; font-size: 13px; }
+    section { padding: 88px 0; }
+    .vision, .cts { grid-template-columns: 1fr; }
+    .vision div, .cts div { padding-right: 0; }
+    .div { grid-template-columns: 1fr; gap: 8px; padding: 26px 0; }
+    .div p { grid-column: 1; }
+    .div .th { grid-column: 1; max-width: none; }
+    .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 160px 160px; }
+    .gal figure:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .shots { grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; height: 420px; }
+    .shots .a { grid-row: auto; grid-column: 1 / 3; }
+    .ipCard .txt, .job { padding: 28px; }
+    .crs { gap: 16px 14px; }
+    .kidNote { display: block; margin: 12px 0 0; }
+    footer .wrap { grid-template-columns: 1fr; }
+    footer .info span { display: block; white-space: normal; }
+    footer .info span + span::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header id="hd">
+  <div class="wrap">
+    <a class="brand" href="#"><svg class="tmc" viewBox="0 0 124 40" fill="currentColor" role="img" aria-label="TMC"><rect width="28" height="8"/><rect x="10" width="8" height="40"/><rect x="34" width="8" height="40"/><rect x="64" width="8" height="40"/><polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/><path d="M110.3 8.7A16 16 0 1 0 110.3 31.3" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="117" cy="20" r="5" fill="#ff2d55"/></svg><span class="ko">더매치컴퍼니</span></a>
+    <nav>
+      <a href="#company"><small>COMPANY</small>회사 소개</a>
+      <a href="#business"><small>BUSINESS</small>사업 분야</a>
+      <a href="#creators"><small>CREATORS</small>크리에이터</a>
+      <a href="#careers"><small>CAREERS</small>인재 모집</a>
+      <a href="#contact"><small>CONTACT</small>문의</a>
+    </nav>
+    <a class="hbtn" href="#careers">크리에이터 지원</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="kicker en">THE MATCH COMPANY</div>
+    <h1>Live Media<br>That <em>Connects</em><br>People.</h1>
+    <div class="row">
+      <p>더매치컴퍼니는 라이브 방송, 크리에이터 채널 네트워크, 숏폼 콘텐츠, 브랜드 파트너십을 아우르는 미디어 컴퍼니입니다.</p>
+      <a class="live" href="https://thematch.live/"><span class="dot"></span>지금 라이브 보기</a>
+    </div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true"><div class="en">
+  <span>LIVE PRODUCTION</span><span>✦</span><span>CREATOR NETWORK</span><span>✦</span><span>SHORT-FORM STUDIO</span><span>✦</span><span>BRAND PARTNERSHIP</span><span>✦</span>
+  <span>LIVE PRODUCTION</span><span>✦</span><span>CREATOR NETWORK</span><span>✦</span><span>SHORT-FORM STUDIO</span><span>✦</span><span>BRAND PARTNERSHIP</span><span>✦</span>
+</div></div>
+
+<section id="company">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>01</b>COMPANY</div>
+      <div>
+        <h2>보는 방송에서<br>참여하는 미디어로.</h2>
+        <p>더매치컴퍼니는 시청자가 직접 방송의 주인공이 되는 참여형 라이브 콘텐츠를 만듭니다. 기획·제작·송출부터 채널 운영과 숏폼 유통까지, 콘텐츠의 전 과정을 한 회사 안에서 완성합니다.</p>
+      </div>
+    </div>
+    <div class="shots" aria-hidden="true"><div class="a"></div><div class="b"></div><div class="c"></div></div>
+    <div class="vision">
+      <div><span class="en">MISSION</span><b>사람을 잇는 콘텐츠</b><p>화면 너머의 시청자를 실제 인연으로 연결하는 라이브 경험을 만듭니다.</p></div>
+      <div><span class="en">PRODUCTION</span><b>365일 라이브 편성</b><p>여러 채널이 시간대를 나눠 아침부터 새벽까지 매일 방송합니다.</p></div>
+      <div><span class="en">NETWORK</span><b>크리에이터와 함께 성장</b><p>크리에이터별 채널을 열고 제작·편집·운영을 회사가 함께 책임집니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="business" class="biz">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>02</b>BUSINESS</div>
+      <div>
+        <h2>사업 분야</h2>
+        <p>라이브 제작 역량을 중심으로 채널 네트워크, 숏폼, 브랜드 사업으로 확장합니다.</p>
+      </div>
+    </div>
+    <div class="divs">
+      <div class="div"><span class="no en">01</span><img class="th" src="img/camera.jpg" alt="" loading="lazy"><h3><small class="en">LIVE PRODUCTION</small>라이브 콘텐츠 제작</h3><p>참여형 라이브 포맷 기획, 방송 진행, 스튜디오·송출 운영.</p><span class="arrow">→</span></div>
+      <div class="div"><span class="no en">02</span><img class="th" src="img/console.jpg" alt="" loading="lazy"><h3><small class="en">CREATOR NETWORK</small>크리에이터 채널 네트워크</h3><p>크리에이터별 유튜브 채널 개설·편성·운영과 성장 관리.</p><span class="arrow">→</span></div>
+      <div class="div"><span class="no en">03</span><img class="th" src="img/tripod.jpg" alt="" loading="lazy"><h3><small class="en">SHORT-FORM STUDIO</small>숏폼 스튜디오</h3><p>라이브 하이라이트를 쇼츠로 제작해 매일 유통합니다.</p><span class="arrow">→</span></div>
+      <div class="div"><span class="no en">04</span><img class="th" src="img/lounge.jpg" alt="" loading="lazy"><h3><small class="en">BRAND PARTNERSHIP</small>브랜드 파트너십</h3><p>라이브·숏폼을 활용한 브랜디드 콘텐츠와 광고 협업.</p><span class="arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="studio">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>03</b>STUDIO</div>
+      <div>
+        <h2>기획부터 송출까지,<br>제작의 모든 단계를 직접.</h2>
+        <p>촬영·조명·오디오·송출·편집. 라이브 한 편이 시청자에게 닿기까지의 전 과정을 더매치컴퍼니가 직접 운영합니다.</p>
+      </div>
+    </div>
+    <div class="gal" aria-hidden="true">
+      <figure style="background-image:url(img/g-cinema.jpg)"><figcaption class="en">CAMERA</figcaption></figure>
+      <figure style="background-image:url(img/g-rig.jpg)"><figcaption class="en">LIGHTING</figcaption></figure>
+      <figure style="background-image:url(img/g-audio.jpg)"><figcaption class="en">AUDIO</figcaption></figure>
+      <figure style="background-image:url(img/switcher.jpg)"><figcaption class="en">LIVE SWITCHING</figcaption></figure>
+      <figure style="background-image:url(img/g-lens.jpg)"><figcaption class="en">CINEMA LENS</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ip">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>04</b>FLAGSHIP IP</div>
+      <div>
+        <h2>대표 콘텐츠</h2>
+        <p>더매치컴퍼니의 첫 번째 오리지널 IP.</p>
+      </div>
+    </div>
+    <div class="ipCard">
+      <div class="pic" role="img" aria-label="더매치 로고"></div>
+      <div class="txt">
+        <h3>더매치 라이브 소개팅</h3>
+        <p>시청자가 직접 참여하는 무료 라이브 소개팅. 방송 안에서 마음이 맞으면 실시간으로 카카오톡을 연결합니다.</p>
+        <div class="tags"><span>YouTube Live</span><span>실시간 카톡매칭</span><span>매일 방송</span><span>Shorts</span></div>
+        <a class="live" href="https://thematch.live/" style="align-self:flex-start"><span class="dot"></span>thematch.live</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="creators">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>05</b>CREATORS</div>
+      <div>
+        <h2>더매치 크리에이터</h2>
+        <p>빨간 테두리는 지금 라이브 중인 크리에이터입니다.</p>
+      </div>
+    </div>
+    <div class="crs" id="crs"></div>
+  </div>
+</section>
+
+<section id="careers" class="careers">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>06</b>CAREERS</div>
+      <div>
+        <h2>더매치컴퍼니와 함께할<br>크리에이터를 찾습니다.</h2>
+        <p>방송 경험이 없어도 괜찮습니다. 진행 방식부터 채널 운영까지 회사가 함께합니다.</p>
+      </div>
+    </div>
+    <div class="cgrid">
+      <div class="job">
+        <span class="st">상시 모집</span>
+        <h3>라이브 크리에이터</h3>
+        <p>더매치 채널에서 나만의 라이브 소개팅 방송을 진행할 크리에이터.</p>
+        <ul>
+          <li>본인 이름의 더매치 채널 개설·운영</li>
+          <li>방송 하이라이트 쇼츠 제작·업로드 지원</li>
+          <li>진행 교육, 장비·송출 세팅 지원</li>
+        </ul>
+        <div class="how">지원: 카카오톡 <b>match</b> 로 '크리에이터 지원' — 이름·나이·지역, 방송 가능 시간, 방송 경험(채널 링크), 간단한 자기소개</div>
+      </div>
+      <div class="job">
+        <span class="st">상시 모집</span>
+        <h3>라이브 소개팅 출연자</h3>
+        <p>더매치 라이브에서 새로운 인연을 만나 볼 일반 출연자.</p>
+        <ul>
+          <li>참여비 없는 무료 소개팅</li>
+          <li>방송 중 매칭되면 실시간 카톡 연결</li>
+          <li>원하는 시간대 채널로 참여</li>
+        </ul>
+        <div class="how">신청: 카카오톡 <b>match</b> 로 '소개팅 참여'</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>07</b>CONTACT</div>
+      <div>
+        <h2>함께 만들 이야기가<br>있다면 연락 주세요.</h2>
+      </div>
+    </div>
+    <div class="cts">
+      <div><b>광고 · 브랜드 협업</b><p>라이브·쇼츠를 활용한 브랜디드 콘텐츠 제안</p></div>
+      <div><b>크리에이터 · 출연</b><p>크리에이터 지원, 소개팅 출연 신청</p></div>
+      <div><b>제휴 · 기타</b><p>콘텐츠 제휴와 그 밖의 문의</p></div>
+    </div>
+    <button type="button" class="kid" id="copyId" title="카카오톡 ID 복사"><svg viewBox="0 0 46 42" aria-label="카카오톡"><path d="M23 2C11.4 2 2 9.4 2 18.6c0 5.9 3.9 11.1 9.8 14l-2.4 8.6c-.2.7.6 1.3 1.2.9l10.2-6.8c.7.1 1.5.1 2.2.1 11.6 0 21-7.4 21-16.6S34.6 2 23 2z" fill="#3a1d1d"/><text x="23" y="23.3" text-anchor="middle" font-size="12.5" font-weight="800" letter-spacing=".3" fill="#fee500">TALK</text></svg><span id="kidText">match</span></button>
+    <span class="kidNote">눌러서 카카오톡 아이디 복사</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><svg class="tmc" viewBox="0 0 124 40" fill="currentColor" role="img" aria-label="TMC"><rect width="28" height="8"/><rect x="10" width="8" height="40"/><rect x="34" width="8" height="40"/><rect x="64" width="8" height="40"/><polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/><path d="M110.3 8.7A16 16 0 1 0 110.3 31.3" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="117" cy="20" r="5" fill="#ff2d55"/></svg><span class="ko">더매치컴퍼니</span></div>
+      <div class="info"><span>상호 <b>더매치스튜디오</b></span><span>대표이사 <b>김희열</b></span><span>사업자등록번호 <b>592-88-03391</b></span></div>
+      <div class="info"><span>이메일 <b><a href="mailto:thematch.std@gmail.com">thematch.std@gmail.com</a></b></span><span>카카오톡 match</span></div>
+      <div style="margin-top:14px">© 더매치컴퍼니 (The Match Company). All rights reserved.</div>
+    </div>
+    <div class="links">
+      <a href="https://thematch.live/">Live</a>
+      <a href="https://www.youtube.com/@더매치_몽멘">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 크리에이터 목록은 thematch.live 페이지와 같다. 누가 방송 중인지는 봇이 thematch.live/live.json 에 3분마다 적는다
+const MEMBERS = [
+  { ch: "몽멘", name: "몽멘", handle: "@더매치_몽멘", time: "밤 8시" },
+  { ch: "융군제", name: "융군제", handle: "@더매치_융군제", time: "새벽 1시" },
+  { ch: "킹우진", name: "킹우진", handle: "@더매치_킹우진", time: "오후 3시" },
+  { ch: "도민호", name: "도민호", handle: "@더매치_도민호", time: "아침 6시" },
+  // 봇의 live.json 은 우영2 채널을 아직 '우상2' 로 적는다
+  { ch: "우상2", name: "우영2", handle: "@더매치_우영2", time: "랜덤" },
+  { ch: "상빈2", name: "상빈2", handle: "@더매치_상빈2", time: "랜덤" },
+];
+const LIVE_JSON = "https://thematch.live/live.json";
+const STALE_MIN = 150;
+const $ = (id) => document.getElementById(id);
+
+// 첫 화면을 지나면 메뉴를 흰 바탕으로
+const solid = () => $("hd").classList.toggle("solid", scrollY > innerHeight * 0.6);
+addEventListener("scroll", solid, { passive: true });
+solid();
+
+function draw(live) {
+  for (const m of MEMBERS) {
+    const on = live[m.ch];
+    const a = document.createElement("a");
+    a.className = "cr" + (on ? " on" : "");
+    a.href = on ? "https://www.youtube.com/watch?v=" + on : "https://www.youtube.com/" + m.handle;
+    a.innerHTML = "<div class='ph'><span class='ini'></span><span class='pill'>LIVE</span></div><b></b><span></span>";
+    a.querySelector(".ini").textContent = m.name[0];
+    a.querySelector("b").textContent = m.name;
+    a.querySelector("b + span").textContent = on ? "지금 라이브 중" : m.handle;
+    $("crs").appendChild(a);
+  }
+}
+
+// 카톡 ID 복사(인앱 브라우저는 clipboard API 가 막힐 수 있어 예전 방식으로도)
+$("copyId").addEventListener("click", () => {
+  const done = () => {
+    $("kidText").textContent = "복사됨";
+    setTimeout(() => { $("kidText").textContent = "match"; }, 1500);
+  };
+  const old = () => {
+    const t = document.createElement("textarea");
+    t.value = "match";
+    document.body.appendChild(t);
+    t.select();
+    try { if (document.execCommand("copy")) done(); } catch (e) { /* 복사 못 하면 글자를 보고 치면 된다 */ }
+    t.remove();
+  };
+  if (navigator.clipboard) navigator.clipboard.writeText("match").then(done, old); else old();
+});
+
+(async () => {
+  let live = {};
+  try {
+    const ctl = new AbortController();
+    setTimeout(() => ctl.abort(), 3000);
+    const r = await fetch(LIVE_JSON + "?t=" + Date.now(), { cache: "no-store", signal: ctl.signal });
+    const d = await r.json();
+    if (d.updated && Date.now() - Date.parse(d.updated) < STALE_MIN * 60000) {
+      for (const x of d.live || []) live[x.ch] = x.id;
+    }
+  } catch (e) { /* 못 읽으면 크리에이터 목록만 */ }
+  draw(live);
+})();
+</script>
+</body>
+</html>
