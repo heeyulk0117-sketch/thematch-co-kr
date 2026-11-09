@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Match Company</title>
+<meta name="description" content="The Match Company is a media company covering planning, scenario writing and video production, AI film and software development, design, and live broadcasting.">
+<meta property="og:title" content="The Match Company">
+<meta property="og:site_name" content="더매치">
+<meta name="application-name" content="더매치">
+<meta property="og:description" content="Planning · Scenario · Film Production · AI Film · Software · Design · Live">
+<meta property="og:image" content="https://thematch.co.kr/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thematch.co.kr/en.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="alternate" hreflang="en" href="https://thematch.co.kr/en.html">
+<link rel="alternate" hreflang="ko" href="https://thematch.co.kr/">
+<link rel="icon" href="tmc-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  /* 규모 있는 미디어 회사처럼(사용자 11-08): 흰 바탕 + 큰 글씨 + 검은 첫 화면, 강조색은 빨강 하나만 */
+  :root { --ink: #0a0a0a; --paper: #ffffff; --soft: #f4f4f5; --line: #e4e4e7; --mute: #6b6b74; --red: #ff2d55; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 16px/1.7 "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+         letter-spacing: -0.015em; word-break: keep-all; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .en { font-weight: 800; letter-spacing: 0.02em; }
+
+  /* 메뉴: 첫 화면 위에서는 투명, 내려가면 흰색 */
+  header { position: fixed; inset: 0 0 auto; z-index: 20; color: #fff; transition: background .25s, color .25s, border-color .25s; border-bottom: 1px solid transparent; }
+  header.solid { background: rgba(255, 255, 255, .96); color: var(--ink); border-color: var(--line); backdrop-filter: blur(10px); }
+  header .wrap { display: flex; align-items: center; gap: 40px; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand .tmc { height: 24px; width: auto; display: block; }
+  .brand .en { font-size: 22px; letter-spacing: 0.1em; white-space: nowrap; }
+  .brand .ko { font-size: 13px; font-weight: 600; opacity: .6; white-space: nowrap; padding-left: 12px; border-left: 1px solid currentColor; }
+  nav { display: flex; gap: 36px; margin-left: auto; font-weight: 700; font-size: 15px; }
+  nav a { opacity: .85; }
+  nav a:hover { opacity: 1; }
+  nav a small { display: block; font-size: 11px; font-weight: 600; opacity: .55; letter-spacing: .06em; line-height: 1.1; }
+  .lang { margin: 0 14px 0 auto; font-size: 13px; font-weight: 800; letter-spacing: .12em; opacity: .75; }
+  .lang:hover { opacity: 1; }
+  .hbtn { padding: 10px 18px; border-radius: 99px; font-size: 14px; font-weight: 700; border: 1px solid currentColor; white-space: nowrap; }
+  .hbtn.red { margin-left: 8px; background: var(--red); border-color: var(--red); color: #fff; }
+
+  /* 첫 화면 */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; background: var(--ink); overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; background: url(img/studio.jpg) center 40% / cover; opacity: .55; transform: scale(1.08); animation: drift 24s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: scale(1.18) translateX(-2%); } }
+  .hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--ink) 4%, rgba(10,10,10,.35) 60%, rgba(10,10,10,.65)); }
+  .hero .wrap { position: relative; width: 100%; padding-bottom: 84px; }
+  .hero .kicker { font-size: 14px; letter-spacing: .3em; opacity: .7; }
+  .hero h1 { margin: 18px 0 26px; font-size: clamp(44px, 8.4vw, 116px); line-height: 1.02; font-weight: 800; letter-spacing: -0.045em; }
+  .hero h1 em { font-style: normal; color: var(--red); }
+  .hero .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.2); padding-top: 26px; }
+  .hero p { margin: 0; max-width: 560px; font-size: clamp(16px, 1.8vw, 19px); opacity: .85; }
+  .live { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 99px; background: var(--red); color: #fff; font-weight: 700; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+
+  /* 흐르는 글씨 띠 */
+  .marquee { background: var(--red); color: #fff; overflow: hidden; white-space: nowrap; padding: 16px 0; }
+  .marquee div { display: inline-block; animation: flow 30s linear infinite; font-size: 20px; }
+  .marquee span { margin: 0 28px; }
+  @keyframes flow { to { transform: translateX(-50%); } }
+
+  section { padding: 140px 0; }
+  .head { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 64px; }
+  .label { font-size: 13px; letter-spacing: .24em; color: var(--mute); padding-top: 14px; }
+  .label b { display: block; color: var(--red); font-size: 13px; margin-bottom: 6px; }
+  h2 { margin: 0; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.15; font-weight: 800; letter-spacing: -0.04em; }
+  .head p { margin: 22px 0 0; color: var(--mute); font-size: 18px; max-width: 680px; }
+
+  /* 회사 */
+  .shots { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; height: clamp(320px, 42vw, 560px); margin-bottom: 56px; }
+  .shots div { border-radius: 18px; background: center / cover no-repeat #18181b; }
+  .shots .a { grid-row: 1 / 3; background-image: url(img/hq.jpg); background-position: center 40%; }
+  .shots .b { background-image: url(img/edit.jpg); }
+  .shots .c { background-image: url(img/studio.jpg); }
+  .vision { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); }
+  .vision div { padding: 32px 32px 0 0; }
+  .vision b { display: block; font-size: 22px; margin-bottom: 8px; }
+  .vision .en { color: var(--red); font-size: 13px; letter-spacing: .2em; }
+  .vision p { margin: 0; color: var(--mute); }
+
+  /* 조직도 */
+  .org { margin-top: 96px; padding: clamp(28px, 4vw, 56px); border-radius: 24px; background: var(--soft); }
+  .orgHead { display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px; }
+  .orgHead .en { color: var(--red); font-size: 13px; letter-spacing: .2em; font-weight: 800; }
+  .orgHead h3 { margin: 0; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.03em; }
+  .top { position: relative; display: flex; justify-content: center; margin-bottom: 128px; }
+  .top::after { content: ""; position: absolute; left: 50%; top: 100%; width: 2px; height: 92px; background: var(--ink); }
+  .ceo { position: relative; padding: 22px 56px; border-radius: 16px; background: var(--ink); color: #fff; text-align: center; box-shadow: 0 18px 40px -18px rgba(10,10,10,.6); }
+  .ceo .en, .staff .en { display: block; color: var(--red); font-size: 12px; letter-spacing: .24em; font-weight: 800; margin-bottom: 4px; }
+  .ceo b { font-size: 22px; }
+  .staff { position: absolute; left: calc(50% + 150px); top: calc(100% + 20px); padding: 12px 22px; border-radius: 12px; border: 2px dashed #a1a1aa; background: #fff; text-align: center; }
+  .staff::before { content: ""; position: absolute; right: 100%; top: 50%; width: 150px; border-top: 2px dashed #a1a1aa; }
+  .staff b { font-size: 15px; }
+  .ogs { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ogs::before { content: ""; position: absolute; top: -36px; left: 12.5%; right: 12.5%; height: 2px; background: var(--ink); }
+  .og { position: relative; display: flex; flex-direction: column; border-radius: 16px; background: #fff; overflow: hidden; box-shadow: 0 1px 0 var(--line); }
+  .og::before { content: ""; position: absolute; left: 50%; top: -36px; width: 2px; height: 36px; background: var(--ink); }
+  .ob { position: relative; padding: 20px 20px 18px; background: var(--ink); color: #fff; }
+  .ob .num { position: absolute; right: 18px; top: 16px; font-size: 28px; font-weight: 900; color: rgba(255,255,255,.12); letter-spacing: -0.04em; }
+  .ob .en { display: block; color: var(--red); font-size: 11px; letter-spacing: .2em; font-weight: 800; margin-bottom: 6px; }
+  .ob b { font-size: 19px; letter-spacing: -0.02em; }
+  .og ul { list-style: none; margin: 0; padding: 8px 20px 14px; }
+  .og li { position: relative; padding: 12px 0 12px 16px; border-bottom: 1px solid var(--line); }
+  .og li:last-child { border-bottom: 0; }
+  .og li::before { content: ""; position: absolute; left: 0; top: 19px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .og li b { display: block; font-size: 15px; }
+  .og li span { font-size: 12px; color: var(--mute); letter-spacing: .04em; }
+
+  /* 사업 */
+  .biz { background: var(--soft); }
+  .flow { display: flex; flex-wrap: wrap; gap: 10px 0; align-items: center; margin: -24px 0 48px; font-size: clamp(15px, 1.6vw, 18px); font-weight: 800; letter-spacing: .14em; }
+  .flow span { color: var(--ink); }
+  .flow i { font-style: normal; color: var(--red); margin: 0 14px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { position: relative; min-height: 400px; border-radius: 20px; overflow: hidden; color: #fff; background: #111; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; isolation: isolate; }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s ease; }
+  .card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,.55) 45%, rgba(10,10,10,.94) 100%); }
+  .card:hover img { transform: scale(1.06); }
+  .card img.inv { filter: invert(1) brightness(.7) contrast(1.1); }
+  .card .no { position: absolute; top: 24px; left: 30px; font-size: 14px; font-weight: 800; letter-spacing: .2em; color: rgba(255,255,255,.75); }
+  .card .no::after { content: ""; display: inline-block; width: 28px; height: 2px; background: var(--red); margin-left: 10px; vertical-align: middle; }
+  .card small { display: block; font-size: 12px; letter-spacing: .22em; font-weight: 800; color: var(--red); margin-bottom: 8px; }
+  .card h3 { margin: 0 0 10px; font-size: clamp(24px, 2.4vw, 30px); letter-spacing: -0.03em; line-height: 1.25; }
+  .card p { margin: 0 0 16px; color: rgba(255,255,255,.78); font-size: 15px; line-height: 1.6; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font-size: 12px; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); backdrop-filter: blur(6px); }
+  .card.wide { grid-column: span 2; }
+  .card.hl { box-shadow: 0 0 0 2px var(--red), 0 24px 60px -20px rgba(255,45,85,.55); }
+  .card.hl::before { background: linear-gradient(180deg, rgba(10,10,10,.1) 0%, rgba(30,6,14,.6) 45%, rgba(10,10,10,.95) 100%); }
+  .card .badge { position: absolute; top: 20px; right: 24px; font-size: 11px; font-weight: 800; letter-spacing: .2em; padding: 6px 12px; border-radius: 99px; background: var(--red); color: #fff; }
+
+  /* 대표 IP */
+  .studio { background: var(--ink); color: #fff; padding-bottom: 0; }
+  .studio .label, .studio .head p { color: #a1a1aa; }
+  .gal { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 14px; }
+  .gal figure { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: center / cover no-repeat #18181b; }
+  .gal figure:first-child { grid-row: 1 / 3; }
+  .gal figcaption { position: absolute; left: 18px; bottom: 16px; font-size: 12px; font-weight: 800; letter-spacing: .2em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .ip { background: var(--ink); color: #fff; }
+  .ip .label { color: #a1a1aa; }
+  .ip .head p { color: #a1a1aa; }
+  .ipCard { display: grid; grid-template-columns: 1.3fr 1fr; border-radius: 24px; overflow: hidden; background: #161618; }
+  .ipCard .pic { position: relative; min-height: 380px; background: linear-gradient(90deg, transparent 55%, #161618), url(img/onair.jpg) 30% center / cover no-repeat #0f0f12; }
+  .ipCard .onair { position: absolute; left: 24px; top: 24px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 6px; background: var(--red); color: #fff; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
+  .ipCard .onair i { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+  .ipCard .txt { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+  .ipCard .txt img { width: 72px; height: 72px; border-radius: 50%; margin-bottom: 20px; }
+  .ipCard h3 { margin: 0 0 10px; font-size: 34px; letter-spacing: -0.03em; }
+  .ipCard p { margin: 0 0 28px; color: #c4c4cc; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tags span { padding: 6px 14px; border-radius: 99px; border: 1px solid #3f3f46; font-size: 13px; color: #d4d4d8; }
+
+  /* 크리에이터 */
+  .crew { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; background: var(--ink); color: #fff; border-radius: 24px; padding: clamp(36px, 5vw, 64px); position: relative; overflow: hidden; }
+  .crew::after { content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255,45,85,.45), transparent 65%); }
+  .crew .big { font-size: clamp(96px, 14vw, 180px); font-weight: 900; line-height: .9; letter-spacing: -0.06em; }
+  .crew .big em { font-style: normal; color: var(--red); }
+  .crew .big small { font-size: .28em; letter-spacing: -0.02em; margin-left: 8px; }
+  .crew h3 { margin: 0 0 12px; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; }
+  .crew p { margin: 0 0 20px; color: rgba(255,255,255,.72); }
+  .crew .tags span { position: relative; z-index: 1; }
+
+  /* 채용 */
+  .careers { background: var(--soft); }
+  .cgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .job { padding: 40px; border-radius: 24px; background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .job .st { align-self: flex-start; padding: 4px 12px; border-radius: 99px; background: var(--red); color: #fff; font-size: 13px; font-weight: 800; }
+  .job h3 { margin: 18px 0 10px; font-size: 28px; letter-spacing: -0.03em; }
+  .job p { margin: 0 0 20px; color: var(--mute); }
+  .job ul { margin: 0 0 28px; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .job li { padding-left: 22px; position: relative; }
+  .job li::before { content: ""; position: absolute; left: 0; top: 11px; width: 10px; height: 2px; background: var(--red); }
+  .applyBtn { display: inline-block; margin-top: 12px; padding: 10px 18px; border-radius: 99px; background: var(--red); color: #fff; font-weight: 700; font-size: 14px; }
+  /* 지원서 창 */
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(10,10,10,.6); backdrop-filter: blur(4px); }
+  .modal.open { display: flex; }
+  .modal form { width: 100%; max-width: 520px; max-height: calc(100vh - 32px); overflow-y: auto; background: #fff; color: var(--ink); border-radius: 20px; padding: 32px; }
+  .modal h3 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.03em; }
+  .modal .sub { margin: 0 0 22px; color: var(--mute); font-size: 14px; }
+  .modal label { display: block; font-size: 13px; font-weight: 700; margin: 14px 0 6px; }
+  .modal select { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; background: #fff; }
+  .modal input, .modal textarea { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; }
+  .modal textarea { min-height: 96px; resize: vertical; }
+  .modal .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  .modal .btns { display: flex; gap: 10px; margin-top: 24px; }
+  .modal .btns button { flex: 1; padding: 14px; border-radius: 99px; font: inherit; font-weight: 700; cursor: pointer; border: 1px solid var(--line); background: #fff; }
+  .modal .btns .go { background: var(--red); border-color: var(--red); color: #fff; }
+  .modal label.agree { display: flex; align-items: flex-start; gap: 8px; margin: 18px 0 0; font-weight: 500; font-size: 13px; color: var(--mute); }
+  .modal label.agree input { width: auto; margin: 2px 0 0; accent-color: var(--red); }
+  .modal label.agree a { color: var(--ink); text-decoration: underline; }
+  .modal .note { margin: 14px 0 0; font-size: 12px; color: var(--mute); }
+  .job .how { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); color: var(--mute); font-size: 15px; }
+
+  /* 문의 */
+  .contact { background: var(--ink); color: #fff; }
+  .contact .label { color: #a1a1aa; }
+  .collabBox { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; padding: clamp(28px, 4vw, 48px); border-radius: 24px; background: linear-gradient(120deg, #ff2d55, #b3123a); }
+  .collabBox .en { font-size: 12px; letter-spacing: .24em; font-weight: 800; color: rgba(255,255,255,.75); }
+  .collabBox h3 { margin: 8px 0; font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.03em; }
+  .collabBox p { margin: 0; color: rgba(255,255,255,.85); }
+  .bigBtn { flex: none; padding: 18px 34px; border-radius: 99px; background: #fff; color: var(--ink); font-size: 18px; font-weight: 800; transition: transform .2s; }
+  .bigBtn:hover { transform: translateX(4px); }
+  .bigBtn.dark { background: var(--ink); color: #fff; }
+  .bizCta { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 28px; padding: 24px 28px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
+  .bizCta p { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .pdfBtn { display: inline-block; margin: 12px 0 0 18px; padding: 8px 16px; border-radius: 99px; border: 1px solid rgba(255,255,255,.6); color: #fff; font-size: 14px; font-weight: 700; }
+  .pdfBtn:hover { background: rgba(255,255,255,.15); }
+  .tel { display: inline-block; margin-top: 12px; color: #fff; font-size: 18px; font-weight: 700; }
+  .cts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #3f3f46; }
+  .cts div { padding: 32px 32px 0 0; }
+  .cts b { display: block; font-size: 20px; margin-bottom: 6px; }
+  .cts p { margin: 0; color: #a1a1aa; }
+  .kid { display: inline-flex; align-items: center; gap: 10px; margin-top: 56px; border: 0; border-radius: 99px; padding: 8px 26px 8px 9px; background: #fee500;
+         color: #3a1d1d; font-size: 26px; font-weight: 900; line-height: 1; cursor: pointer; }
+  .kid svg { width: 46px; height: 42px; flex: none; font-family: "Pretendard Variable", Pretendard, Arial, sans-serif; }
+  .kidNote { margin-left: 14px; color: #a1a1aa; font-size: 15px; }
+
+  /* 회사 정보(노란 글씨 = 법인 정보가 정해지면 바꿀 자리) */
+  footer { background: var(--ink); color: #a1a1aa; font-size: 13px; line-height: 1.9; border-top: 1px solid #27272a; }
+  footer .wrap { padding-top: 48px; padding-bottom: 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+  footer .brand { color: #fff; margin-bottom: 16px; }
+  footer .brand .tmc { height: 22px; }
+  footer .info span { white-space: nowrap; }
+  footer .info span + span::before { content: ""; display: inline-block; width: 1px; height: 10px; background: #3f3f46; margin: 0 12px; }
+  footer .links { display: flex; gap: 24px; color: #d4d4d8; font-weight: 600; }
+  .todo { color: #facc15; font-weight: 600; }
+
+  @media (max-width: 980px) {
+    .ogs { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ogs::before, .og::before { display: none; }
+    .top::after { display: none; }
+    .top { margin-bottom: 40px; }
+    nav { display: none; }
+    .hbtn { margin-left: auto; }
+    .head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 44px; }
+    .label { padding-top: 0; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .card.wide { grid-column: auto; }
+    .card:last-child { grid-column: span 2; }
+    .ipCard, .cgrid { grid-template-columns: 1fr; }
+    .ipCard .pic { min-height: 200px; }
+    .crew { grid-template-columns: 1fr; gap: 24px; }
+  }
+  @media (max-width: 640px) {
+    .ogs { grid-template-columns: 1fr; gap: 14px; }
+    .ogs::before, .og::before, .top::after { display: none; }
+    .top { flex-direction: column; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .staff { position: static; transform: none; }
+    .staff::before { display: none; }
+    .wrap { padding: 0 20px; }
+    header .wrap { height: 64px; gap: 14px; }
+    .hbtn { padding: 8px 12px; font-size: 13px; }
+    .hbtn.red { margin-left: 6px; }
+    .brand .ko { display: none; }
+    header .lang { display: none; }
+    section { padding: 88px 0; }
+    .vision, .cts { grid-template-columns: 1fr; }
+    .vision div, .cts div { padding-right: 0; }
+    .cards { grid-template-columns: 1fr; }
+    .card, .card.wide, .card:last-child { grid-column: auto; min-height: 380px; padding: 24px; }
+    .card .no { left: 24px; }
+    .flow i { margin: 0 8px; }
+    .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 160px 160px; }
+    .gal figure:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .shots { grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; height: 420px; }
+    .shots .a { grid-row: auto; grid-column: 1 / 3; }
+    .ipCard .txt, .job { padding: 28px; }
+    .kidNote { display: block; margin: 12px 0 0; }
+    footer .wrap { grid-template-columns: 1fr; }
+    footer .info span { display: block; white-space: normal; }
+    footer .info span + span::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header id="hd">
+  <div class="wrap">
+    <a class="brand" href="#"><svg class="tmc" viewBox="0 0 124 40" fill="currentColor" role="img" aria-label="TMC"><rect width="28" height="8"/><rect x="10" width="8" height="40"/><rect x="34" width="8" height="40"/><rect x="64" width="8" height="40"/><polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/><path d="M110.3 8.7A16 16 0 1 0 110.3 31.3" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="117" cy="20" r="5" fill="#ff2d55"/></svg><span class="ko">The Match Company</span></a>
+    <nav>
+      <a href="#company"><small>COMPANY</small>About</a>
+      <a href="#business"><small>BUSINESS</small>Services</a>
+      <a href="#creators"><small>CREATORS</small>Creators</a>
+      <a href="#careers"><small>CAREERS</small>Careers</a>
+      <a href="#contact"><small>CONTACT</small>Contact</a>
+    </nav>
+    <a class="lang en" href="/" hreflang="ko">KO</a>
+    <a class="hbtn" href="#apply" data-apply>Join as Creator</a>
+    <a class="hbtn red" href="#collab" data-collab>Work with Us</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="kicker en">THE MATCH COMPANY</div>
+    <h1>Live Media<br>That <em>Connects</em><br>People.</h1>
+    <div class="row">
+      <p>The Match Company is a media company that covers it all: planning, scenario writing and production, AI film and software development, design, and live broadcasting.</p>
+    </div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true"><div class="en">
+  <span>LIVE PRODUCTION</span><span>✦</span><span>CREATOR NETWORK</span><span>✦</span><span>SHORT-FORM STUDIO</span><span>✦</span><span>BRAND PARTNERSHIP</span><span>✦</span>
+  <span>LIVE PRODUCTION</span><span>✦</span><span>CREATOR NETWORK</span><span>✦</span><span>SHORT-FORM STUDIO</span><span>✦</span><span>BRAND PARTNERSHIP</span><span>✦</span>
+</div></div>
+
+<section id="company">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>01</b>COMPANY</div>
+      <div>
+        <h2>From watching<br>to taking part.</h2>
+        <p>We create interactive live content where viewers become part of the show. From planning, production and broadcasting to channel management and short-form distribution, we handle every step in-house.</p>
+      </div>
+    </div>
+    <div class="shots" aria-hidden="true"><div class="a"></div><div class="b"></div><div class="c"></div></div>
+    <div class="vision">
+      <div><span class="en">MISSION</span><b>Content that connects</b><p>We build content experiences made together with the audience on the other side of the screen.</p></div>
+      <div><span class="en">PRODUCTION</span><b>Live 24/7, 365 days</b><p>Multiple channels share the schedule to keep the live going 24 hours a day, 365 days a year.</p></div>
+      <div><span class="en">NETWORK</span><b>Growing with creators</b><p>We open a channel for each creator and take on production, editing and operations together.</p></div>
+    </div>
+    <div class="org">
+      <div class="orgHead"><span class="en">ORGANIZATION</span><h3>Organization</h3></div>
+      <div class="top">
+        <div class="ceo"><span class="en">CEO</span><b>Chief Executive Officer</b></div>
+        <div class="staff"><span class="en">STRATEGY OFFICE</span><b>Strategy Office</b></div>
+      </div>
+      <div class="ogs">
+        <div class="og"><div class="ob"><span class="num en">01</span><span class="en">CONTENT DIVISION</span><b>Content</b></div><ul><li><b>Planning & Scenario</b><span class=en>Concept · Script · Format</span></li><li><b>Production</b><span class=en>Shooting · Lighting · Audio</span></li><li><b>Post-Production</b><span class=en>Editing · Color · Sound</span></li><li><b>Design</b><span class=en>Brand · Graphics · Motion</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">02</span><span class="en">TECH DIVISION</span><b>Technology</b></div><ul><li><b>AI Film</b><span class=en>Generative Video</span></li><li><b>Software</b><span class=en>Web · App · Automation</span></li><li><b>Broadcast Tech</b><span class=en>Switching · Streaming</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">03</span><span class="en">LIVE DIVISION</span><b>Live Business</b></div><ul><li><b>Live Operations</b><span class=en>24/7 Programming</span></li><li><b>Channel</b><span class=en>YouTube · Shorts</span></li><li><b>Creator Management</b><span class=en>Onboarding · Growth</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">04</span><span class="en">BUSINESS DIVISION</span><b>Business Support</b></div><ul><li><b>Brand Partnership</b><span class=en>Branded Content · Ads</span></li><li><b>Marketing</b><span class=en>Growth · PR</span></li><li><b>Management Support</b><span class=en>Finance · HR · Legal</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="business" class="biz">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>02</b>BUSINESS</div>
+      <div>
+        <h2>We plan, we shoot,<br>we build with tech.</h2>
+        <p>Scenario and planning, long-form, short-form, series and film production, AI film and software, design, and live broadcasting. One team takes content from idea to audience.</p>
+      </div>
+    </div>
+    <div class="flow en"><span>LONG-FORM</span><i>·</i><span>SHORT-FORM</span><i>·</i><span>SERIES</span><i>·</i><span>AI FILM</span><i>·</i><span>MOVIE</span><i>·</i><span>DESIGN</span><i>·</i><span>SCENARIO</span><i>·</i><span>LIVE</span></div>
+    <div class="cards">
+      <article class="card"><img class="inv" src="img/plan.jpg" alt="" loading="lazy"><span class="no en">01</span><small class="en">PLANNING &amp; SCENARIO</small><h3>Planning · Scenario</h3><p>Turning ideas into stories. From scripts and screenplays to series structure, format development and storyboards, we draw the blueprint.</p><div class="tags"><span>Screenplay</span><span>Series Planning</span><span>Format</span><span>Storyboard</span></div></article>
+      <article class="card wide"><img src="img/camera.jpg" alt="" loading="lazy"><span class="no en">02</span><small class="en">FILM &amp; VIDEO PRODUCTION</small><h3>Film &amp; Video Production</h3><p>Long-form, short-form, series and film. We shoot with cinema cameras, lighting and audio, and finish editing, color and sound in one team.</p><div class="tags"><span>Long-form</span><span>Short-form</span><span>Series</span><span>Film · Shorts</span><span>Editing · Color</span><span>Sound</span></div></article>
+      <article class="card wide hl"><img src="img/dev.jpg" alt="" loading="lazy"><span class="no en">03</span><span class="badge en">AI · TECH</span><small class="en">AI FILM &amp; SOFTWARE</small><h3>AI Film · Software</h3><p>We make video with AI and build our own production tools: generative video, automatic editing, subtitles and highlight extraction, upload and scheduling automation, web, apps and broadcast tools.</p><div class="tags"><span>AI Video</span><span>AI Editing · Subtitles</span><span>Upload Automation</span><span>Web · App</span><span>Broadcast Tools</span></div></article>
+      <article class="card"><img src="img/design.jpg" alt="" loading="lazy"><span class="no en">04</span><small class="en">DESIGN</small><h3>Design</h3><p>Brand identity, thumbnails, channel art, posters and motion graphics. We design the first impression of your content.</p><div class="tags"><span>Brand Design</span><span>Thumbnails · Channel Art</span><span>Motion Graphics</span></div></article>
+      <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">05</span><small class="en">CREATOR NETWORK</small><h3>Creator Network</h3><p>Channel launch and programming, Shorts distribution and growth management for every creator.</p><div class="tags"><span>Channel Ops</span><span>Shorts Distribution</span><span>Growth</span></div></article>
+      <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">BRAND PARTNERSHIP</small><h3>Brand Partnership</h3><p>With planning, production and distribution under one roof, we run branded content and ad campaigns from start to finish.</p><div class="tags"><span>Branded Content</span><span>Live Commerce</span><span>Ad Campaigns</span></div></article>
+      <article class="card"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">07</span><small class="en">LIVE BROADCAST</small><h3>Live Broadcast</h3><p>Multi-cam switching and real-time streaming, 24/7, 365 days. Interactive live shows made with the audience are our strength.</p><div class="tags"><span>Multi-cam Switching</span><span>Real-time Streaming</span><span>Interactive Format</span></div></article>
+    </div>
+    <div class="bizCta"><p>Have a project in mind? Talk to us about planning, production and development in one place.</p><a class="bigBtn dark" href="#collab" data-collab>Work with Us →</a></div>
+  </div>
+</section>
+
+<section class="studio">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>03</b>STUDIO</div>
+      <div>
+        <h2>From planning to broadcast,<br>every step in-house.</h2>
+        <p>Camera, lighting, audio, streaming and editing. We run the whole process that brings each live show to its viewers.</p>
+      </div>
+    </div>
+    <div class="gal" aria-hidden="true">
+      <figure style="background-image:url(img/g-cinema.jpg)"><figcaption class="en">CAMERA</figcaption></figure>
+      <figure style="background-image:url(img/g-rig.jpg)"><figcaption class="en">LIGHTING</figcaption></figure>
+      <figure style="background-image:url(img/g-audio.jpg)"><figcaption class="en">AUDIO</figcaption></figure>
+      <figure style="background-image:url(img/switcher.jpg)"><figcaption class="en">LIVE SWITCHING</figcaption></figure>
+      <figure style="background-image:url(img/g-lens.jpg)"><figcaption class="en">CINEMA LENS</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ip">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>04</b>FLAGSHIP IP</div>
+      <div>
+        <h2>Flagship IP</h2>
+        <p>The first original IP of The Match Company.</p>
+      </div>
+    </div>
+    <div class="ipCard">
+      <div class="pic" role="img" aria-label="An ON AIR sign"><span class="onair en"><i></i>LIVE</span></div>
+      <div class="txt">
+        <h3>The Match Live</h3>
+        <p>Live shows running 24/7 across multiple channels. An interactive format the audience shapes in real time. Jump straight to whichever channel is on air now.</p>
+        <div class="tags"><span>YouTube Live</span><span>24/7 Live</span><span>Multi-channel</span><span>Interactive</span><span>Shorts</span></div>
+        <a class="live" href="https://thematch.live/" style="align-self:flex-start"><span class="dot"></span>thematch.live</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="creators">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>05</b>CREATORS</div>
+      <div>
+        <h2>Our Creators</h2>
+        <p>More than 10 streamers broadcast with The Match Company.</p>
+      </div>
+    </div>
+    <div class="crew">
+      <div class="big en">10<em>+</em><small>streamers</small></div>
+      <div>
+        <h3>10+ streamers go live<br>with The Match.</h3>
+        <p>Each streamer gets a dedicated channel, with planning, production, editing and operations handled together with us.</p>
+        <div class="tags"><span>Dedicated Channel</span><span>Production Support</span><span>Shorts</span><span>Growth</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="careers" class="careers">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>06</b>CAREERS</div>
+      <div>
+        <h2>We are looking for<br>creators.</h2>
+        <p>No broadcasting experience needed. We support you from hosting to channel management.</p>
+      </div>
+    </div>
+    <div class="cgrid">
+      <div class="job">
+        <span class="st">Always open</span>
+        <h3>Live Creator</h3>
+        <p>Creators who want to build their own live show with The Match Company.</p>
+        <ul>
+          <li>Your own channel, launched and managed with us</li>
+          <li>Highlight Shorts edited and uploaded for you</li>
+          <li>Hosting training, equipment and streaming setup</li>
+        </ul>
+        <div class="how">Apply with the <b>Join as Creator</b> button at the top right. <a class="applyBtn" href="#apply" data-apply>Apply now →</a></div>
+      </div>
+      <div class="job">
+        <span class="st">Process</span>
+        <h3>How it starts</h3>
+        <p>We are with you at every step, from application to your first show.</p>
+        <ul>
+          <li>Send the application form</li>
+          <li>Talk through your show concept and time slot</li>
+          <li>Channel and equipment setup, then your first live</li>
+        </ul>
+        <div class="how">We will review your application and get back to you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="head">
+      <div class="label en"><b>07</b>CONTACT</div>
+      <div>
+        <h2>Have a story to make?<br>Get in touch.</h2>
+      </div>
+    </div>
+    <div class="collabBox">
+      <div><span class="en">PARTNERSHIP</span><h3>Have a project for us?</h3><p>Film production, AI film and software, design and live. We join from the planning stage.</p><a class="tel" href="tel:+821067256881">☎ +82 10-6725-6881</a><a class="pdfBtn" href="thematch-company-profile.pdf" download>Company Profile (PDF, KR) ↓</a></div>
+      <a class="bigBtn" href="#collab" data-collab>Work with Us →</a>
+    </div>
+    <div class="cts">
+      <div><b>Production · Brands</b><p>Film production, AI film, design and branded content</p></div>
+      <div><b>Creators · Talent</b><p>Creator applications and live appearances</p></div>
+      <div><b>Partnerships · Other</b><p>Content partnerships and other inquiries</p></div>
+    </div>
+    <button type="button" class="kid" id="copyId" title="Copy KakaoTalk ID"><svg viewBox="0 0 46 42" aria-label="카카오톡"><path d="M23 2C11.4 2 2 9.4 2 18.6c0 5.9 3.9 11.1 9.8 14l-2.4 8.6c-.2.7.6 1.3 1.2.9l10.2-6.8c.7.1 1.5.1 2.2.1 11.6 0 21-7.4 21-16.6S34.6 2 23 2z" fill="#3a1d1d"/><text x="23" y="23.3" text-anchor="middle" font-size="12.5" font-weight="800" letter-spacing=".3" fill="#fee500">TALK</text></svg><span id="kidText">match</span></button>
+    <span class="kidNote">Tap to copy our KakaoTalk ID</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><svg class="tmc" viewBox="0 0 124 40" fill="currentColor" role="img" aria-label="TMC"><rect width="28" height="8"/><rect x="10" width="8" height="40"/><rect x="34" width="8" height="40"/><rect x="64" width="8" height="40"/><polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/><path d="M110.3 8.7A16 16 0 1 0 110.3 31.3" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="117" cy="20" r="5" fill="#ff2d55"/></svg><span class="ko">The Match Company</span></div>
+      <div class="info"><span>Legal name <b>The Match Studio (더매치스튜디오)</b></span><span>CEO <b>Kim Heeyeol</b></span><span>Business Reg. No. <b>592-88-03391</b></span></div>
+      <div class="info"><span>Address <b>1F-3F, 28-24 Pyeongchon-ro 43beon-gil, Yangji-eup, Cheoin-gu, Yongin-si, Gyeonggi-do, Republic of Korea</b></span></div>
+      <div class="info"><span>Phone <b><a href="tel:+821067256881">+82 10-6725-6881</a></b></span><span>Email <b><a href="mailto:thematch.std@gmail.com">thematch.std@gmail.com</a></b></span><span>KakaoTalk match</span></div>
+      <div style="margin-top:14px">© The Match Company. All rights reserved.</div>
+    </div>
+    <div class="links">
+      <a href="privacy.html"><b>Privacy Policy (KR)</b></a>
+      <a href="thematch-company-profile.pdf" download>Company Profile</a>
+      <a href="/" hreflang="ko">한국어</a>
+      <a href="https://thematch.live/">Live</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="apply" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+  <form>
+    <h3 id="applyTitle">Join as Creator</h3>
+    <p class="sub">Fill in and press Send. We will contact you after reviewing.</p>
+    <div class="row2">
+      <div><label for="a1">Name</label><input id="a1" name="이름" required></div>
+      <div><label for="a2">Age</label><input id="a2" name="나이" inputmode="numeric" required></div>
+    </div>
+    <div class="row2">
+      <div><label for="a3">Location</label><input id="a3" name="지역"></div>
+      <div><label for="a4">Contact</label><input id="a4" name="연락처" placeholder="Phone, email or KakaoTalk ID" required></div>
+    </div>
+    <label for="a5">Available hours</label><input id="a5" name="방송 가능 시간" placeholder="e.g. weekdays 9pm-12am">
+    <label for="a6">Experience · Channel link</label><input id="a6" name="방송 경험·채널 링크" placeholder="Leave blank if none">
+    <label for="a7">About you</label><textarea id="a7" name="자기소개"></textarea>
+    <label class="agree"><input type="checkbox" name="개인정보 수집·이용 동의" value="동의함" required> <span>I agree to the collection and use of my personal information (required) · <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy (KR)</a></span></label>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+    <div class="btns"><button type="button" data-close>Close</button><button type="submit" class="go">Send</button></div>
+    <p class="note">Name, age and contact are all you need.</p>
+  </form>
+</div>
+
+<div class="modal" id="collab" role="dialog" aria-modal="true" aria-labelledby="collabTitle">
+  <form>
+    <h3 id="collabTitle">Work with Us</h3>
+    <p class="sub">Film production, AI film and software, design and live. Tell us about your project and we will get back to you.</p>
+    <div class="row2">
+      <div><label for="c1">Company · Brand</label><input id="c1" name="회사·브랜드명" required></div>
+      <div><label for="c2">Your name</label><input id="c2" name="담당자" required></div>
+    </div>
+    <label for="c3">Contact</label><input id="c3" name="연락처" placeholder="Email or phone" required>
+    <label for="c4">Area</label>
+    <select id="c4" name="문의 분야">
+      <option>Film production (long-form · short-form · series · film)</option>
+      <option>AI film · Software</option>
+      <option>Planning · Scenario</option>
+      <option>Design</option>
+      <option>Branded content · Ads</option>
+      <option>Live broadcast · Live commerce</option>
+      <option>Other</option>
+    </select>
+    <div class="row2">
+      <div><label for="c5">Budget (optional)</label><input id="c5" name="예산" placeholder="e.g. USD 5,000"></div>
+      <div><label for="c6">Timeline (optional)</label><input id="c6" name="희망 일정" placeholder="e.g. December"></div>
+    </div>
+    <label for="c7">Project details</label><textarea id="c7" name="문의 내용" required></textarea>
+    <label class="agree"><input type="checkbox" name="개인정보 수집·이용 동의" value="동의함" required> <span>I agree to the collection and use of my personal information (required) · <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy (KR)</a></span></label>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+    <div class="btns"><button type="button" data-close>Close</button><button type="submit" class="go">Send</button></div>
+    <p class="note">Inquiries go to thematch.std@gmail.com. Urgent: +82 10-6725-6881</p>
+  </form>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+// 첫 화면을 지나면 메뉴를 흰 바탕으로
+const solid = () => $("hd").classList.toggle("solid", scrollY > innerHeight * 0.6);
+addEventListener("scroll", solid, { passive: true });
+solid();
+
+// 카톡 ID 복사(인앱 브라우저는 clipboard API 가 막힐 수 있어 예전 방식으로도)
+$("copyId").addEventListener("click", () => {
+  const done = () => {
+    $("kidText").textContent = "Copied";
+    setTimeout(() => { $("kidText").textContent = "match"; }, 1500);
+  };
+  const old = () => {
+    const t = document.createElement("textarea");
+    t.value = "match";
+    document.body.appendChild(t);
+    t.select();
+    try { if (document.execCommand("copy")) done(); } catch (e) { /* 복사 못 하면 글자를 보고 치면 된다 */ }
+    t.remove();
+  };
+  if (navigator.clipboard) navigator.clipboard.writeText("match").then(done, old); else old();
+});
+
+
+// 크리에이터 지원서·협업 문의서: 서버가 없어서 FormSubmit 이 회사 메일함으로 넘겨 준다
+const FORMS = {
+  apply: { subject: (d) => "[크리에이터 지원 · EN] " + d["이름"], done: "Sent", ok: "Application received. We will be in touch." },
+  collab: { subject: (d) => "[협업 문의 · EN] " + d["회사·브랜드명"], done: "Sent", ok: "Inquiry received. We will be in touch." },
+};
+const closeAll = () => document.querySelectorAll(".modal.open").forEach((m) => m.classList.remove("open"));
+const openModal = (id) => { closeAll(); $(id).classList.add("open"); $(id).querySelector("input").focus(); };
+document.querySelectorAll("[data-apply]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openModal("apply"); }));
+document.querySelectorAll("[data-collab]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openModal("collab"); }));
+document.querySelectorAll(".modal").forEach((m) => {
+  m.addEventListener("click", (e) => { if (e.target === m || e.target.closest("[data-close]")) m.classList.remove("open"); });
+});
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+if (FORMS[location.hash.slice(1)]) $(location.hash.slice(1)).classList.add("open");
+for (const id in FORMS) {
+  const form = $(id).querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    data._subject = FORMS[id].subject(data);
+    data._template = "table";
+    const send = form.querySelector(".go"), msg = form.querySelector(".note");
+    send.disabled = true;
+    send.textContent = "Sending…";
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/thematch.std@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!r.ok) throw new Error(r.status);
+      form.reset();
+      send.textContent = FORMS[id].done;
+      msg.textContent = FORMS[id].ok;
+      msg.style.color = "var(--red)";
+    } catch (err) {
+      send.disabled = false;
+      send.textContent = "Send";
+      msg.textContent = "Could not send. Please try again in a moment.";
+    }
+  });
+}
+</script>
+</body>
+</html>

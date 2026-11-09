@@ -16,6 +16,8 @@
 <meta property="og:url" content="https://thematch.co.kr/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0a0a">
+<link rel="alternate" hreflang="en" href="https://thematch.co.kr/en.html">
+<link rel="alternate" hreflang="ko" href="https://thematch.co.kr/">
 <link rel="icon" href="tmc-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -43,6 +45,8 @@
   nav a { opacity: .85; }
   nav a:hover { opacity: 1; }
   nav a small { display: block; font-size: 11px; font-weight: 600; opacity: .55; letter-spacing: .06em; line-height: 1.1; }
+  .lang { margin: 0 14px 0 auto; font-size: 13px; font-weight: 800; letter-spacing: .12em; opacity: .75; }
+  .lang:hover { opacity: 1; }
   .hbtn { padding: 10px 18px; border-radius: 99px; font-size: 14px; font-weight: 700; border: 1px solid currentColor; white-space: nowrap; }
   .hbtn.red { margin-left: 8px; background: var(--red); border-color: var(--red); color: #fff; }
 
@@ -211,6 +215,8 @@
   .bigBtn.dark { background: var(--ink); color: #fff; }
   .bizCta { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 28px; padding: 24px 28px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
   .bizCta p { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .pdfBtn { display: inline-block; margin: 12px 0 0 18px; padding: 8px 16px; border-radius: 99px; border: 1px solid rgba(255,255,255,.6); color: #fff; font-size: 14px; font-weight: 700; }
+  .pdfBtn:hover { background: rgba(255,255,255,.15); }
   .tel { display: inline-block; margin-top: 12px; color: #fff; font-size: 18px; font-weight: 700; }
   .cts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #3f3f46; }
   .cts div { padding: 32px 32px 0 0; }
@@ -258,6 +264,7 @@
     .hbtn { padding: 8px 12px; font-size: 13px; }
     .hbtn.red { margin-left: 6px; }
     .brand .ko { display: none; }
+    header .lang { display: none; }
     section { padding: 88px 0; }
     .vision, .cts { grid-template-columns: 1fr; }
     .vision div, .cts div { padding-right: 0; }
@@ -289,6 +296,7 @@
       <a href="#careers"><small>CAREERS</small>인재 모집</a>
       <a href="#contact"><small>CONTACT</small>문의</a>
     </nav>
+    <a class="lang en" href="en.html" hreflang="en">EN</a>
     <a class="hbtn" href="#apply" data-apply>크리에이터 지원</a>
     <a class="hbtn red" href="#collab" data-collab>협업 문의</a>
   </div>
@@ -469,7 +477,7 @@
       </div>
     </div>
     <div class="collabBox">
-      <div><span class="en">PARTNERSHIP</span><h3>함께 만들 프로젝트가 있나요?</h3><p>영상 제작부터 AI 영상·개발, 디자인, 라이브까지. 기획 단계부터 함께합니다.</p><a class="tel" href="tel:01067256881">☎ 010-6725-6881</a></div>
+      <div><span class="en">PARTNERSHIP</span><h3>함께 만들 프로젝트가 있나요?</h3><p>영상 제작부터 AI 영상·개발, 디자인, 라이브까지. 기획 단계부터 함께합니다.</p><a class="tel" href="tel:01067256881">☎ 010-6725-6881</a><a class="pdfBtn" href="thematch-company-profile.pdf" download>회사소개서 받기 (PDF) ↓</a></div>
       <a class="bigBtn" href="#collab" data-collab>협업 문의하기 →</a>
     </div>
     <div class="cts">
@@ -493,6 +501,8 @@
     </div>
     <div class="links">
       <a href="privacy.html"><b>개인정보처리방침</b></a>
+      <a href="thematch-company-profile.pdf" download>회사소개서</a>
+      <a href="en.html" hreflang="en">English</a>
       <a href="https://thematch.live/">Live</a>
     </div>
   </div>
