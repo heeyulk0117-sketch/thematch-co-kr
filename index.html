@@ -44,6 +44,7 @@
   nav a:hover { opacity: 1; }
   nav a small { display: block; font-size: 11px; font-weight: 600; opacity: .55; letter-spacing: .06em; line-height: 1.1; }
   .hbtn { padding: 10px 18px; border-radius: 99px; font-size: 14px; font-weight: 700; border: 1px solid currentColor; white-space: nowrap; }
+  .hbtn.red { margin-left: 8px; background: var(--red); border-color: var(--red); color: #fff; }
 
   /* 첫 화면 */
   .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; background: var(--ink); overflow: hidden; }
@@ -185,6 +186,7 @@
   .modal h3 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.03em; }
   .modal .sub { margin: 0 0 22px; color: var(--mute); font-size: 14px; }
   .modal label { display: block; font-size: 13px; font-weight: 700; margin: 14px 0 6px; }
+  .modal select { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; background: #fff; }
   .modal input, .modal textarea { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; }
   .modal textarea { min-height: 96px; resize: vertical; }
   .modal .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
@@ -197,6 +199,16 @@
   /* 문의 */
   .contact { background: var(--ink); color: #fff; }
   .contact .label { color: #a1a1aa; }
+  .collabBox { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; padding: clamp(28px, 4vw, 48px); border-radius: 24px; background: linear-gradient(120deg, #ff2d55, #b3123a); }
+  .collabBox .en { font-size: 12px; letter-spacing: .24em; font-weight: 800; color: rgba(255,255,255,.75); }
+  .collabBox h3 { margin: 8px 0; font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.03em; }
+  .collabBox p { margin: 0; color: rgba(255,255,255,.85); }
+  .bigBtn { flex: none; padding: 18px 34px; border-radius: 99px; background: #fff; color: var(--ink); font-size: 18px; font-weight: 800; transition: transform .2s; }
+  .bigBtn:hover { transform: translateX(4px); }
+  .bigBtn.dark { background: var(--ink); color: #fff; }
+  .bizCta { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 28px; padding: 24px 28px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
+  .bizCta p { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .tel { display: inline-block; margin-top: 12px; color: #fff; font-size: 18px; font-weight: 700; }
   .cts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #3f3f46; }
   .cts div { padding: 32px 32px 0 0; }
   .cts b { display: block; font-size: 20px; margin-bottom: 6px; }
@@ -241,6 +253,8 @@
     .wrap { padding: 0 20px; }
     header .wrap { height: 64px; gap: 14px; }
     .hbtn { padding: 8px 12px; font-size: 13px; }
+    .hbtn.red { margin-left: 6px; }
+    .brand .ko { display: none; }
     section { padding: 88px 0; }
     .vision, .cts { grid-template-columns: 1fr; }
     .vision div, .cts div { padding-right: 0; }
@@ -273,6 +287,7 @@
       <a href="#contact"><small>CONTACT</small>문의</a>
     </nav>
     <a class="hbtn" href="#apply" data-apply>크리에이터 지원</a>
+    <a class="hbtn red" href="#collab" data-collab>협업 문의</a>
   </div>
 </header>
 
@@ -342,6 +357,7 @@
       <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">BRAND PARTNERSHIP</small><h3>브랜드 파트너십</h3><p>기획부터 제작·유통까지 가진 팀이라 가능한 협업. 브랜디드 콘텐츠와 광고 캠페인을 처음부터 끝까지 맡습니다.</p><div class="tags"><span>브랜디드 콘텐츠</span><span>라이브 커머스</span><span>광고 캠페인</span></div></article>
       <article class="card"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">07</span><small class="en">LIVE BROADCAST</small><h3>라이브 방송</h3><p>멀티캠 스위칭과 실시간 송출로 365일 24시간 라이브를 운영합니다. 시청자가 함께 만드는 참여형 라이브가 강점입니다.</p><div class="tags"><span>멀티캠 스위칭</span><span>실시간 송출</span><span>참여형 포맷</span></div></article>
     </div>
+    <div class="bizCta"><p>필요한 작업이 있으신가요? 기획부터 제작·개발까지 한 번에 상담해 드립니다.</p><a class="bigBtn dark" href="#collab" data-collab>협업 문의하기 →</a></div>
   </div>
 </section>
 
@@ -449,8 +465,12 @@
         <h2>함께 만들 이야기가<br>있다면 연락 주세요.</h2>
       </div>
     </div>
+    <div class="collabBox">
+      <div><span class="en">PARTNERSHIP</span><h3>함께 만들 프로젝트가 있나요?</h3><p>영상 제작부터 AI 영상·개발, 디자인, 라이브까지. 기획 단계부터 함께합니다.</p><a class="tel" href="tel:01067256881">☎ 010-6725-6881</a></div>
+      <a class="bigBtn" href="#collab" data-collab>협업 문의하기 →</a>
+    </div>
     <div class="cts">
-      <div><b>광고 · 브랜드 협업</b><p>라이브·쇼츠를 활용한 브랜디드 콘텐츠 제안</p></div>
+      <div><b>제작 · 브랜드 협업</b><p>영상 제작, AI 영상, 디자인, 브랜디드 콘텐츠 제안</p></div>
       <div><b>크리에이터 · 출연</b><p>크리에이터 지원, 라이브 출연 문의</p></div>
       <div><b>제휴 · 기타</b><p>콘텐츠 제휴와 그 밖의 문의</p></div>
     </div>
@@ -465,7 +485,7 @@
       <div class="brand"><svg class="tmc" viewBox="0 0 124 40" fill="currentColor" role="img" aria-label="TMC"><rect width="28" height="8"/><rect x="10" width="8" height="40"/><rect x="34" width="8" height="40"/><rect x="64" width="8" height="40"/><polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/><path d="M110.3 8.7A16 16 0 1 0 110.3 31.3" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="117" cy="20" r="5" fill="#ff2d55"/></svg><span class="ko">더매치컴퍼니</span></div>
       <div class="info"><span>상호 <b>더매치스튜디오</b></span><span>대표이사 <b>김희열</b></span><span>사업자등록번호 <b>592-88-03391</b></span></div>
       <div class="info"><span>주소 <b>경기도 용인시 처인구 양지읍 평촌로43번길 28-24 1층, 2층, 3층</b></span></div>
-      <div class="info"><span>이메일 <b><a href="mailto:thematch.std@gmail.com">thematch.std@gmail.com</a></b></span><span>카카오톡 match</span></div>
+      <div class="info"><span>대표전화 <b><a href="tel:01067256881">010-6725-6881</a></b></span><span>이메일 <b><a href="mailto:thematch.std@gmail.com">thematch.std@gmail.com</a></b></span><span>카카오톡 match</span></div>
       <div style="margin-top:14px">© 더매치컴퍼니 (The Match Company). All rights reserved.</div>
     </div>
     <div class="links">
@@ -475,7 +495,7 @@
 </footer>
 
 <div class="modal" id="apply" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
-  <form id="applyForm">
+  <form>
     <h3 id="applyTitle">크리에이터 지원</h3>
     <p class="sub">적고 보내기만 누르면 끝. 확인 후 남겨 주신 연락처로 연락드립니다.</p>
     <div class="row2">
@@ -490,8 +510,38 @@
     <label for="a6">방송 경험 · 채널 링크</label><input id="a6" name="방송 경험·채널 링크" placeholder="없으면 비워 두세요">
     <label for="a7">간단한 자기소개</label><textarea id="a7" name="자기소개"></textarea>
     <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
-    <div class="btns"><button type="button" id="applyClose">닫기</button><button type="submit" class="go" id="applySend">보내기</button></div>
-    <p class="note" id="applyMsg">이름·나이·연락처만 적어도 지원할 수 있어요.</p>
+    <div class="btns"><button type="button" data-close>닫기</button><button type="submit" class="go">보내기</button></div>
+    <p class="note">이름·나이·연락처만 적어도 지원할 수 있어요.</p>
+  </form>
+</div>
+
+<div class="modal" id="collab" role="dialog" aria-modal="true" aria-labelledby="collabTitle">
+  <form>
+    <h3 id="collabTitle">협업 문의</h3>
+    <p class="sub">영상 제작, AI 영상·개발, 디자인, 라이브까지. 프로젝트 내용을 남겨 주시면 담당자가 연락드립니다.</p>
+    <div class="row2">
+      <div><label for="c1">회사 · 브랜드명</label><input id="c1" name="회사·브랜드명" required></div>
+      <div><label for="c2">담당자</label><input id="c2" name="담당자" required></div>
+    </div>
+    <label for="c3">연락처</label><input id="c3" name="연락처" placeholder="이메일 또는 전화번호" required>
+    <label for="c4">문의 분야</label>
+    <select id="c4" name="문의 분야">
+      <option>영상 제작 (롱폼 · 숏폼 · 시리즈 · 영화)</option>
+      <option>AI 영상 · 프로그램 개발</option>
+      <option>기획 · 시나리오</option>
+      <option>디자인</option>
+      <option>브랜디드 콘텐츠 · 광고</option>
+      <option>라이브 방송 · 라이브 커머스</option>
+      <option>기타</option>
+    </select>
+    <div class="row2">
+      <div><label for="c5">예산 (선택)</label><input id="c5" name="예산" placeholder="예: 500만 원"></div>
+      <div><label for="c6">희망 일정 (선택)</label><input id="c6" name="희망 일정" placeholder="예: 12월 중"></div>
+    </div>
+    <label for="c7">문의 내용</label><textarea id="c7" name="문의 내용" required></textarea>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+    <div class="btns"><button type="button" data-close>닫기</button><button type="submit" class="go">보내기</button></div>
+    <p class="note">문의는 thematch.std@gmail.com 으로 접수됩니다. 급한 문의는 010-6725-6881</p>
   </form>
 </div>
 
@@ -521,41 +571,48 @@ $("copyId").addEventListener("click", () => {
 });
 
 
-// 크리에이터 지원서: 서버가 없어서 FormSubmit 이 회사 메일함으로 넘겨 준다
-const modal = $("apply");
-const openApply = (e) => { e.preventDefault(); modal.classList.add("open"); $("a1").focus(); };
-document.querySelectorAll("[data-apply]").forEach((a) => a.addEventListener("click", openApply));
-const closeApply = () => modal.classList.remove("open");
-$("applyClose").addEventListener("click", closeApply);
-modal.addEventListener("click", (e) => { if (e.target === modal) closeApply(); });
-addEventListener("keydown", (e) => { if (e.key === "Escape") closeApply(); });
-if (location.hash === "#apply") modal.classList.add("open");
-$("applyForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const data = Object.fromEntries(new FormData(form));
-  data._subject = "[크리에이터 지원] " + data["이름"];
-  data._template = "table";
-  const send = $("applySend"), msg = $("applyMsg");
-  send.disabled = true;
-  send.textContent = "보내는 중…";
-  try {
-    const r = await fetch("https://formsubmit.co/ajax/thematch.std@gmail.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!r.ok) throw new Error(r.status);
-    form.reset();
-    send.textContent = "지원 완료";
-    msg.textContent = "지원서가 접수됐어요. 확인 후 연락드릴게요.";
-    msg.style.color = "var(--red)";
-  } catch (err) {
-    send.disabled = false;
-    send.textContent = "보내기";
-    msg.textContent = "전송이 안 됐어요. 잠시 후 다시 눌러 주세요.";
-  }
+// 크리에이터 지원서·협업 문의서: 서버가 없어서 FormSubmit 이 회사 메일함으로 넘겨 준다
+const FORMS = {
+  apply: { subject: (d) => "[크리에이터 지원] " + d["이름"], done: "지원 완료", ok: "지원서가 접수됐어요. 확인 후 연락드릴게요." },
+  collab: { subject: (d) => "[협업 문의] " + d["회사·브랜드명"], done: "문의 완료", ok: "문의가 접수됐어요. 담당자가 확인 후 연락드릴게요." },
+};
+const closeAll = () => document.querySelectorAll(".modal.open").forEach((m) => m.classList.remove("open"));
+const openModal = (id) => { closeAll(); $(id).classList.add("open"); $(id).querySelector("input").focus(); };
+document.querySelectorAll("[data-apply]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openModal("apply"); }));
+document.querySelectorAll("[data-collab]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openModal("collab"); }));
+document.querySelectorAll(".modal").forEach((m) => {
+  m.addEventListener("click", (e) => { if (e.target === m || e.target.closest("[data-close]")) m.classList.remove("open"); });
 });
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+if (FORMS[location.hash.slice(1)]) $(location.hash.slice(1)).classList.add("open");
+for (const id in FORMS) {
+  const form = $(id).querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    data._subject = FORMS[id].subject(data);
+    data._template = "table";
+    const send = form.querySelector(".go"), msg = form.querySelector(".note");
+    send.disabled = true;
+    send.textContent = "보내는 중…";
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/thematch.std@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!r.ok) throw new Error(r.status);
+      form.reset();
+      send.textContent = FORMS[id].done;
+      msg.textContent = FORMS[id].ok;
+      msg.style.color = "var(--red)";
+    } catch (err) {
+      send.disabled = false;
+      send.textContent = "보내기";
+      msg.textContent = "전송이 안 됐어요. 잠시 후 다시 눌러 주세요.";
+    }
+  });
+}
 </script>
 </body>
 </html>
