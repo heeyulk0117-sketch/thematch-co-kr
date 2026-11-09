@@ -85,6 +85,34 @@
   .vision .en { color: var(--red); font-size: 13px; letter-spacing: .2em; }
   .vision p { margin: 0; color: var(--mute); }
 
+  /* 조직도 */
+  .org { margin-top: 96px; padding: clamp(28px, 4vw, 56px); border-radius: 24px; background: var(--soft); }
+  .orgHead { display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px; }
+  .orgHead .en { color: var(--red); font-size: 13px; letter-spacing: .2em; font-weight: 800; }
+  .orgHead h3 { margin: 0; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.03em; }
+  .top { position: relative; display: flex; justify-content: center; margin-bottom: 128px; }
+  .top::after { content: ""; position: absolute; left: 50%; top: 100%; width: 2px; height: 92px; background: var(--ink); }
+  .ceo { position: relative; padding: 22px 56px; border-radius: 16px; background: var(--ink); color: #fff; text-align: center; box-shadow: 0 18px 40px -18px rgba(10,10,10,.6); }
+  .ceo .en, .staff .en { display: block; color: var(--red); font-size: 12px; letter-spacing: .24em; font-weight: 800; margin-bottom: 4px; }
+  .ceo b { font-size: 22px; }
+  .staff { position: absolute; left: calc(50% + 150px); top: calc(100% + 20px); padding: 12px 22px; border-radius: 12px; border: 2px dashed #a1a1aa; background: #fff; text-align: center; }
+  .staff::before { content: ""; position: absolute; right: 100%; top: 50%; width: 150px; border-top: 2px dashed #a1a1aa; }
+  .staff b { font-size: 15px; }
+  .ogs { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ogs::before { content: ""; position: absolute; top: -36px; left: 12.5%; right: 12.5%; height: 2px; background: var(--ink); }
+  .og { position: relative; display: flex; flex-direction: column; border-radius: 16px; background: #fff; overflow: hidden; box-shadow: 0 1px 0 var(--line); }
+  .og::before { content: ""; position: absolute; left: 50%; top: -36px; width: 2px; height: 36px; background: var(--ink); }
+  .ob { position: relative; padding: 20px 20px 18px; background: var(--ink); color: #fff; }
+  .ob .num { position: absolute; right: 18px; top: 16px; font-size: 28px; font-weight: 900; color: rgba(255,255,255,.12); letter-spacing: -0.04em; }
+  .ob .en { display: block; color: var(--red); font-size: 11px; letter-spacing: .2em; font-weight: 800; margin-bottom: 6px; }
+  .ob b { font-size: 19px; letter-spacing: -0.02em; }
+  .og ul { list-style: none; margin: 0; padding: 8px 20px 14px; }
+  .og li { position: relative; padding: 12px 0 12px 16px; border-bottom: 1px solid var(--line); }
+  .og li:last-child { border-bottom: 0; }
+  .og li::before { content: ""; position: absolute; left: 0; top: 19px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .og li b { display: block; font-size: 15px; }
+  .og li span { font-size: 12px; color: var(--mute); letter-spacing: .04em; }
+
   /* 사업 */
   .biz { background: var(--soft); }
   .flow { display: flex; flex-wrap: wrap; gap: 10px 0; align-items: center; margin: -24px 0 48px; font-size: clamp(15px, 1.6vw, 18px); font-weight: 800; letter-spacing: .14em; }
@@ -189,6 +217,10 @@
   .todo { color: #facc15; font-weight: 600; }
 
   @media (max-width: 980px) {
+    .ogs { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ogs::before, .og::before { display: none; }
+    .top::after { display: none; }
+    .top { margin-bottom: 40px; }
     nav { display: none; }
     .hbtn { margin-left: auto; }
     .head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 44px; }
@@ -201,6 +233,11 @@
     .crew { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 640px) {
+    .ogs { grid-template-columns: 1fr; gap: 14px; }
+    .ogs::before, .og::before, .top::after { display: none; }
+    .top { flex-direction: column; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .staff { position: static; transform: none; }
+    .staff::before { display: none; }
     .wrap { padding: 0 20px; }
     header .wrap { height: 64px; gap: 14px; }
     .hbtn { padding: 8px 12px; font-size: 13px; }
@@ -266,9 +303,22 @@
     </div>
     <div class="shots" aria-hidden="true"><div class="a"></div><div class="b"></div><div class="c"></div></div>
     <div class="vision">
-      <div><span class="en">MISSION</span><b>사람을 잇는 콘텐츠</b><p>화면 너머의 시청자를 실제 인연으로 연결하는 라이브 경험을 만듭니다.</p></div>
+      <div><span class="en">MISSION</span><b>사람을 잇는 콘텐츠</b><p>화면 너머의 시청자와 함께 만들어 가는 콘텐츠 경험을 만듭니다.</p></div>
       <div><span class="en">PRODUCTION</span><b>365일 24시간 라이브</b><p>여러 채널이 시간대를 나눠 하루 24시간, 1년 365일 라이브를 이어 갑니다.</p></div>
       <div><span class="en">NETWORK</span><b>크리에이터와 함께 성장</b><p>크리에이터별 채널을 열고 제작·편집·운영을 회사가 함께 책임집니다.</p></div>
+    </div>
+    <div class="org">
+      <div class="orgHead"><span class="en">ORGANIZATION</span><h3>조직도</h3></div>
+      <div class="top">
+        <div class="ceo"><span class="en">CEO</span><b>대표이사</b></div>
+        <div class="staff"><span class="en">STRATEGY OFFICE</span><b>경영전략실</b></div>
+      </div>
+      <div class="ogs">
+        <div class="og"><div class="ob"><span class="num en">01</span><span class="en">CONTENT DIVISION</span><b>콘텐츠본부</b></div><ul><li><b>기획·시나리오팀</b><span class=en>Planning & Scenario</span></li><li><b>영상제작팀</b><span class=en>Production</span></li><li><b>포스트프로덕션팀</b><span class=en>Post-Production</span></li><li><b>디자인팀</b><span class=en>Design</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">02</span><span class="en">TECH DIVISION</span><b>기술본부</b></div><ul><li><b>AI 영상팀</b><span class=en>AI Film</span></li><li><b>개발팀</b><span class=en>Software</span></li><li><b>방송기술팀</b><span class=en>Broadcast Tech</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">03</span><span class="en">LIVE DIVISION</span><b>라이브사업본부</b></div><ul><li><b>라이브운영팀</b><span class=en>Live Operations</span></li><li><b>채널운영팀</b><span class=en>Channel</span></li><li><b>크리에이터매니지먼트팀</b><span class=en>Creator Management</span></li></ul></div>
+        <div class="og"><div class="ob"><span class="num en">04</span><span class="en">BUSINESS DIVISION</span><b>경영지원본부</b></div><ul><li><b>브랜드사업팀</b><span class=en>Brand Partnership</span></li><li><b>마케팅팀</b><span class=en>Marketing</span></li><li><b>경영지원팀</b><span class=en>Management Support</span></li></ul></div>
+      </div>
     </div>
   </div>
 </section>
