@@ -254,9 +254,23 @@
     .crew { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 640px) {
-    .ogs { grid-template-columns: 1fr; gap: 14px; }
+    .ogs { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .org { margin-top: 64px; padding: 20px 16px; }
+    .orgHead { margin-bottom: 20px; }
+    .ceo { padding: 12px 28px; }
+    .ceo b { font-size: 17px; }
+    .staff { padding: 8px 16px; }
+    .ob { padding: 12px 12px 10px; }
+    .ob .num, .og li span { display: none; }
+    .ob .en { font-size: 9px; margin-bottom: 2px; }
+    .ob b { font-size: 15px; }
+    .og ul { padding: 6px 12px 10px; }
+    .og li { padding: 5px 0 5px 12px; border-bottom: 0; }
+    .og li::before { top: 12px; width: 5px; height: 5px; }
+    .og li b { font-size: 13px; font-weight: 600; }
     .ogs::before, .og::before, .top::after { display: none; }
-    .top { flex-direction: column; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .top { flex-direction: row; align-items: stretch; gap: 8px; margin-bottom: 16px; }
+    .top > div { display: flex; flex-direction: column; justify-content: center; }
     .staff { position: static; transform: none; }
     .staff::before { display: none; }
     .wrap { padding: 0 20px; }
