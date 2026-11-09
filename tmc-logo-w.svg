@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 40" fill="#ffffff">
+  <!-- TMC 글자 로고: C 안의 빨간 점 = 라이브(방송 중) 표시 -->
+  <rect x="0" y="0" width="28" height="8"/>
+  <rect x="10" y="0" width="8" height="40"/>
+  <rect x="34" y="0" width="8" height="40"/>
+  <rect x="64" y="0" width="8" height="40"/>
+  <polygon points="34,0 43,0 53,22 63,0 72,0 57,32 49,32"/>
+  <path d="M110.3 8.7 A16 16 0 1 0 110.3 31.3" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <circle cx="117" cy="20" r="5" fill="#ff2d55"/>
+</svg>
