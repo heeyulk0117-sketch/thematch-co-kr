@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>더매치</title>
-<meta name="description" content="더매치컴퍼니는 라이브 방송, 크리에이터 채널 네트워크, 숏폼 콘텐츠, 브랜드 파트너십을 아우르는 미디어 컴퍼니입니다.">
+<meta name="description" content="더매치컴퍼니는 영상 기획·제작부터 AI 툴·프로그램 개발, 라이브 방송까지 아우르는 미디어 컴퍼니입니다.">
 <meta property="og:title" content="더매치">
 <meta property="og:site_name" content="더매치">
 <meta name="application-name" content="더매치">
-<meta property="og:description" content="Live · Creator Network · Short-form · Brand Partnership">
+<meta property="og:description" content="영상 기획 · 제작 · AI 툴 개발 · 라이브">
 <meta property="og:image" content="https://thematch.co.kr/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -104,6 +104,9 @@
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tags span { font-size: 12px; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); backdrop-filter: blur(6px); }
   .card.wide { grid-column: span 2; }
+  .card.hl { box-shadow: 0 0 0 2px var(--red), 0 24px 60px -20px rgba(255,45,85,.55); }
+  .card.hl::before { background: linear-gradient(180deg, rgba(10,10,10,.1) 0%, rgba(30,6,14,.6) 45%, rgba(10,10,10,.95) 100%); }
+  .card .badge { position: absolute; top: 20px; right: 24px; font-size: 11px; font-weight: 800; letter-spacing: .2em; padding: 6px 12px; border-radius: 99px; background: var(--red); color: #fff; }
 
   /* 대표 IP */
   .studio { background: var(--ink); color: #fff; padding-bottom: 0; }
@@ -125,16 +128,14 @@
   .tags span { padding: 6px 14px; border-radius: 99px; border: 1px solid #3f3f46; font-size: 13px; color: #d4d4d8; }
 
   /* 크리에이터 */
-  .crs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
-  .cr { display: block; text-align: center; }
-  .cr .ph { position: relative; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--soft); transition: transform .25s; }
-  .cr:hover .ph { transform: translateY(-6px); }
-  .cr .ini { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
-  .cr.on .ph { outline: 4px solid var(--red); outline-offset: 4px; }
-  .cr .pill { display: none; position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); background: var(--red); color: #fff; font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 4px; }
-  .cr.on .pill { display: block; }
-  .cr b { display: block; margin-top: 16px; font-size: 18px; }
-  .cr span { color: var(--mute); font-size: 14px; }
+  .crew { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; background: var(--ink); color: #fff; border-radius: 24px; padding: clamp(36px, 5vw, 64px); position: relative; overflow: hidden; }
+  .crew::after { content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255,45,85,.45), transparent 65%); }
+  .crew .big { font-size: clamp(96px, 14vw, 180px); font-weight: 900; line-height: .9; letter-spacing: -0.06em; }
+  .crew .big em { font-style: normal; color: var(--red); }
+  .crew .big small { font-size: .28em; letter-spacing: -0.02em; margin-left: 8px; }
+  .crew h3 { margin: 0 0 12px; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; }
+  .crew p { margin: 0 0 20px; color: rgba(255,255,255,.72); }
+  .crew .tags span { position: relative; z-index: 1; }
 
   /* 채용 */
   .careers { background: var(--soft); }
@@ -179,7 +180,7 @@
     .card.wide { grid-column: auto; }
     .ipCard, .cgrid { grid-template-columns: 1fr; }
     .ipCard .pic { min-height: 200px; }
-    .crs { grid-template-columns: repeat(3, 1fr); }
+    .crew { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
@@ -197,7 +198,6 @@
     .shots { grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; height: 420px; }
     .shots .a { grid-row: auto; grid-column: 1 / 3; }
     .ipCard .txt, .job { padding: 28px; }
-    .crs { gap: 16px 14px; }
     .kidNote { display: block; margin: 12px 0 0; }
     footer .wrap { grid-template-columns: 1fr; }
     footer .info span { display: block; white-space: normal; }
@@ -227,7 +227,7 @@
     <div class="kicker en">THE MATCH COMPANY</div>
     <h1>Live Media<br>That <em>Connects</em><br>People.</h1>
     <div class="row">
-      <p>더매치컴퍼니는 라이브 방송, 크리에이터 채널 네트워크, 숏폼 콘텐츠, 브랜드 파트너십을 아우르는 미디어 컴퍼니입니다.</p>
+      <p>더매치컴퍼니는 영상 기획·제작부터 AI 툴·프로그램 개발, 라이브 방송까지 아우르는 미디어 컴퍼니입니다.</p>
       <a class="live" href="https://thematch.live/"><span class="dot"></span>지금 라이브 보기</a>
     </div>
   </div>
@@ -261,18 +261,18 @@
     <div class="head">
       <div class="label en"><b>02</b>BUSINESS</div>
       <div>
-        <h2>기획하고, 찍고,<br>송출하고, 만듭니다.</h2>
-        <p>영상 기획부터 제작, 라이브 방송, 프로그램 개발까지. 콘텐츠가 만들어지고 시청자에게 닿는 모든 과정을 더매치컴퍼니가 한 팀으로 해냅니다.</p>
+        <h2>기획하고, 찍고,<br>기술로 만듭니다.</h2>
+        <p>영상 기획과 제작, AI 툴·프로그램 개발, 그리고 라이브 방송까지. 콘텐츠가 만들어지고 시청자에게 닿는 모든 과정을 더매치컴퍼니가 한 팀으로 해냅니다.</p>
       </div>
     </div>
-    <div class="flow en"><span>PLAN</span><i>→</i><span>SHOOT</span><i>→</i><span>STREAM</span><i>→</i><span>BUILD</span><i>→</i><span>GROW</span></div>
+    <div class="flow en"><span>PLAN</span><i>→</i><span>SHOOT</span><i>→</i><span>BUILD</span><i>→</i><span>GROW</span><i>→</i><span>STREAM</span></div>
     <div class="cards">
       <article class="card"><img class="inv" src="img/plan.jpg" alt="" loading="lazy"><span class="no en">01</span><small class="en">CONTENT PLANNING</small><h3>영상 기획</h3><p>아이디어를 포맷으로. 컨셉 설계부터 구성안·대본·콘티, 채널 전략까지 콘텐츠의 설계도를 그립니다.</p><div class="tags"><span>포맷 개발</span><span>구성·대본</span><span>채널 전략</span></div></article>
       <article class="card wide"><img src="img/camera.jpg" alt="" loading="lazy"><span class="no en">02</span><small class="en">VIDEO PRODUCTION</small><h3>영상 제작</h3><p>시네마 카메라와 조명, 오디오로 촬영하고 편집·색보정·사운드까지 한 팀에서 완성합니다. 브랜드 필름부터 유튜브 오리지널까지.</p><div class="tags"><span>촬영·조명</span><span>편집·색보정</span><span>모션그래픽</span><span>숏폼</span></div></article>
-      <article class="card wide"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">03</span><small class="en">LIVE BROADCAST</small><h3>라이브 방송</h3><p>멀티캠 스위칭과 실시간 송출로 매일 밤 라이브를 운영합니다. 시청자가 함께 만드는 참여형 라이브 포맷이 강점입니다.</p><div class="tags"><span>멀티캠 스위칭</span><span>실시간 송출</span><span>참여형 포맷</span><span>방송 진행</span></div></article>
-      <article class="card"><img src="img/dev.jpg" alt="" loading="lazy"><span class="no en">04</span><small class="en">SOFTWARE DEVELOPMENT</small><h3>프로그램 개발</h3><p>제작과 유통을 자동화하는 도구를 직접 만듭니다. 업로드·편성 자동화, 웹·앱, 방송용 툴까지.</p><div class="tags"><span>자동화 시스템</span><span>웹·앱 개발</span><span>방송 툴</span></div></article>
-      <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">05</span><small class="en">CREATOR NETWORK</small><h3>크리에이터 네트워크</h3><p>크리에이터별 채널 개설과 편성, 쇼츠 유통, 성장 관리까지 함께 운영합니다.</p><div class="tags"><span>채널 운영</span><span>쇼츠 유통</span><span>성장 관리</span></div></article>
-      <article class="card wide"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">BRAND PARTNERSHIP</small><h3>브랜드 파트너십</h3><p>기획·제작·라이브·유통을 모두 가진 팀이라 가능한 협업. 브랜디드 콘텐츠, 라이브 커머스, 광고 캠페인을 처음부터 끝까지 맡습니다.</p><div class="tags"><span>브랜디드 콘텐츠</span><span>라이브 커머스</span><span>광고 캠페인</span></div></article>
+      <article class="card wide hl"><img src="img/dev.jpg" alt="" loading="lazy"><span class="no en">03</span><span class="badge en">AI · TECH</span><small class="en">AI TOOLS &amp; SOFTWARE</small><h3>AI 툴 · 프로그램 개발</h3><p>제작 현장에 필요한 도구를 직접 개발합니다. AI 편집·자막·하이라이트 추출, 업로드·편성 자동화, 웹·앱과 방송 툴까지. 기술로 제작 속도와 품질을 함께 끌어올립니다.</p><div class="tags"><span>AI 영상 툴</span><span>자동 편집·자막</span><span>업로드 자동화</span><span>웹·앱 개발</span><span>방송 툴</span></div></article>
+      <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">04</span><small class="en">CREATOR NETWORK</small><h3>크리에이터 네트워크</h3><p>크리에이터별 채널 개설과 편성, 쇼츠 유통, 성장 관리까지 함께 운영합니다.</p><div class="tags"><span>채널 운영</span><span>쇼츠 유통</span><span>성장 관리</span></div></article>
+      <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">05</span><small class="en">BRAND PARTNERSHIP</small><h3>브랜드 파트너십</h3><p>기획·제작·라이브·유통을 모두 가진 팀이라 가능한 협업. 브랜디드 콘텐츠, 라이브 커머스, 광고 캠페인을 처음부터 끝까지 맡습니다.</p><div class="tags"><span>브랜디드 콘텐츠</span><span>라이브 커머스</span><span>광고 캠페인</span></div></article>
+      <article class="card wide"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">LIVE BROADCAST</small><h3>라이브 방송</h3><p>멀티캠 스위칭과 실시간 송출로 매일 밤 라이브를 운영합니다. 시청자가 함께 만드는 참여형 라이브 포맷이 강점입니다.</p><div class="tags"><span>멀티캠 스위칭</span><span>실시간 송출</span><span>참여형 포맷</span><span>방송 진행</span></div></article>
     </div>
   </div>
 </section>
@@ -308,9 +308,9 @@
     <div class="ipCard">
       <div class="pic" role="img" aria-label="더매치 로고"></div>
       <div class="txt">
-        <h3>더매치 라이브 소개팅</h3>
-        <p>시청자가 직접 참여하는 무료 라이브 소개팅. 방송 안에서 마음이 맞으면 실시간으로 카카오톡을 연결합니다.</p>
-        <div class="tags"><span>YouTube Live</span><span>실시간 카톡매칭</span><span>매일 방송</span><span>Shorts</span></div>
+        <h3>더매치 라이브</h3>
+        <p>매일 여러 채널에서 이어지는 더매치의 라이브 방송. 시청자가 실시간으로 함께 만드는 참여형 라이브로, 지금 방송 중인 채널로 바로 연결됩니다.</p>
+        <div class="tags"><span>YouTube Live</span><span>매일 방송</span><span>멀티 채널</span><span>참여형 라이브</span><span>Shorts</span></div>
         <a class="live" href="https://thematch.live/" style="align-self:flex-start"><span class="dot"></span>thematch.live</a>
       </div>
     </div>
@@ -323,10 +323,17 @@
       <div class="label en"><b>05</b>CREATORS</div>
       <div>
         <h2>더매치 크리에이터</h2>
-        <p>빨간 테두리는 지금 라이브 중인 크리에이터입니다.</p>
+        <p>10명 이상 다수의 스트리머가 더매치컴퍼니와 함께 방송합니다.</p>
       </div>
     </div>
-    <div class="crs" id="crs"></div>
+    <div class="crew">
+      <div class="big en">10<em>+</em><small>명 이상</small></div>
+      <div>
+        <h3>10명 이상, 다수의 스트리머가<br>더매치와 함께 라이브합니다.</h3>
+        <p>스트리머마다 전용 채널을 열고, 기획·제작·편집·운영을 회사가 함께 맡습니다.</p>
+        <div class="tags"><span>전용 채널</span><span>제작 지원</span><span>쇼츠 유통</span><span>성장 관리</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -343,7 +350,7 @@
       <div class="job">
         <span class="st">상시 모집</span>
         <h3>라이브 크리에이터</h3>
-        <p>더매치 채널에서 나만의 라이브 소개팅 방송을 진행할 크리에이터.</p>
+        <p>더매치 채널에서 나만의 라이브 방송을 진행할 크리에이터.</p>
         <ul>
           <li>본인 이름의 더매치 채널 개설·운영</li>
           <li>방송 하이라이트 쇼츠 제작·업로드 지원</li>
@@ -352,15 +359,15 @@
         <div class="how">지원: 카카오톡 <b>match</b> 로 '크리에이터 지원' — 이름·나이·지역, 방송 가능 시간, 방송 경험(채널 링크), 간단한 자기소개</div>
       </div>
       <div class="job">
-        <span class="st">상시 모집</span>
-        <h3>라이브 소개팅 출연자</h3>
-        <p>더매치 라이브에서 새로운 인연을 만나 볼 일반 출연자.</p>
+        <span class="st">지원 절차</span>
+        <h3>이렇게 시작합니다</h3>
+        <p>지원부터 첫 방송까지, 회사가 단계마다 함께합니다.</p>
         <ul>
-          <li>참여비 없는 무료 소개팅</li>
-          <li>방송 중 매칭되면 실시간 카톡 연결</li>
-          <li>원하는 시간대 채널로 참여</li>
+          <li>카카오톡으로 지원서 보내기</li>
+          <li>방송 방향과 시간대 상담</li>
+          <li>채널 개설·장비 세팅 후 첫 라이브</li>
         </ul>
-        <div class="how">신청: 카카오톡 <b>match</b> 로 '소개팅 참여'</div>
+        <div class="how">문의: 카카오톡 <b>match</b></div>
       </div>
     </div>
   </div>
@@ -376,7 +383,7 @@
     </div>
     <div class="cts">
       <div><b>광고 · 브랜드 협업</b><p>라이브·쇼츠를 활용한 브랜디드 콘텐츠 제안</p></div>
-      <div><b>크리에이터 · 출연</b><p>크리에이터 지원, 소개팅 출연 신청</p></div>
+      <div><b>크리에이터 · 출연</b><p>크리에이터 지원, 라이브 출연 문의</p></div>
       <div><b>제휴 · 기타</b><p>콘텐츠 제휴와 그 밖의 문의</p></div>
     </div>
     <button type="button" class="kid" id="copyId" title="카카오톡 ID 복사"><svg viewBox="0 0 46 42" aria-label="카카오톡"><path d="M23 2C11.4 2 2 9.4 2 18.6c0 5.9 3.9 11.1 9.8 14l-2.4 8.6c-.2.7.6 1.3 1.2.9l10.2-6.8c.7.1 1.5.1 2.2.1 11.6 0 21-7.4 21-16.6S34.6 2 23 2z" fill="#3a1d1d"/><text x="23" y="23.3" text-anchor="middle" font-size="12.5" font-weight="800" letter-spacing=".3" fill="#fee500">TALK</text></svg><span id="kidText">match</span></button>
@@ -395,44 +402,17 @@
     </div>
     <div class="links">
       <a href="https://thematch.live/">Live</a>
-      <a href="https://www.youtube.com/@더매치_몽멘">YouTube</a>
     </div>
   </div>
 </footer>
 
 <script>
-// 크리에이터 목록은 thematch.live 페이지와 같다. 누가 방송 중인지는 봇이 thematch.live/live.json 에 3분마다 적는다
-const MEMBERS = [
-  { ch: "몽멘", name: "몽멘", handle: "@더매치_몽멘", time: "밤 8시" },
-  { ch: "융군제", name: "융군제", handle: "@더매치_융군제", time: "새벽 1시" },
-  { ch: "킹우진", name: "킹우진", handle: "@더매치_킹우진", time: "오후 3시" },
-  { ch: "도민호", name: "도민호", handle: "@더매치_도민호", time: "아침 6시" },
-  // 봇의 live.json 은 우영2 채널을 아직 '우상2' 로 적는다
-  { ch: "우상2", name: "우영2", handle: "@더매치_우영2", time: "랜덤" },
-  { ch: "상빈2", name: "상빈2", handle: "@더매치_상빈2", time: "랜덤" },
-];
-const LIVE_JSON = "https://thematch.live/live.json";
-const STALE_MIN = 150;
 const $ = (id) => document.getElementById(id);
 
 // 첫 화면을 지나면 메뉴를 흰 바탕으로
 const solid = () => $("hd").classList.toggle("solid", scrollY > innerHeight * 0.6);
 addEventListener("scroll", solid, { passive: true });
 solid();
-
-function draw(live) {
-  for (const m of MEMBERS) {
-    const on = live[m.ch];
-    const a = document.createElement("a");
-    a.className = "cr" + (on ? " on" : "");
-    a.href = on ? "https://www.youtube.com/watch?v=" + on : "https://www.youtube.com/" + m.handle;
-    a.innerHTML = "<div class='ph'><span class='ini'></span><span class='pill'>LIVE</span></div><b></b><span></span>";
-    a.querySelector(".ini").textContent = m.name[0];
-    a.querySelector("b").textContent = m.name;
-    a.querySelector("b + span").textContent = on ? "지금 라이브 중" : m.handle;
-    $("crs").appendChild(a);
-  }
-}
 
 // 카톡 ID 복사(인앱 브라우저는 clipboard API 가 막힐 수 있어 예전 방식으로도)
 $("copyId").addEventListener("click", () => {
@@ -451,19 +431,6 @@ $("copyId").addEventListener("click", () => {
   if (navigator.clipboard) navigator.clipboard.writeText("match").then(done, old); else old();
 });
 
-(async () => {
-  let live = {};
-  try {
-    const ctl = new AbortController();
-    setTimeout(() => ctl.abort(), 3000);
-    const r = await fetch(LIVE_JSON + "?t=" + Date.now(), { cache: "no-store", signal: ctl.signal });
-    const d = await r.json();
-    if (d.updated && Date.now() - Date.parse(d.updated) < STALE_MIN * 60000) {
-      for (const x of d.live || []) live[x.ch] = x.id;
-    }
-  } catch (e) { /* 못 읽으면 크리에이터 목록만 */ }
-  draw(live);
-})();
 </script>
 </body>
 </html>
