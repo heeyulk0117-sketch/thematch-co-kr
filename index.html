@@ -193,6 +193,9 @@
   .modal .btns { display: flex; gap: 10px; margin-top: 24px; }
   .modal .btns button { flex: 1; padding: 14px; border-radius: 99px; font: inherit; font-weight: 700; cursor: pointer; border: 1px solid var(--line); background: #fff; }
   .modal .btns .go { background: var(--red); border-color: var(--red); color: #fff; }
+  .modal label.agree { display: flex; align-items: flex-start; gap: 8px; margin: 18px 0 0; font-weight: 500; font-size: 13px; color: var(--mute); }
+  .modal label.agree input { width: auto; margin: 2px 0 0; accent-color: var(--red); }
+  .modal label.agree a { color: var(--ink); text-decoration: underline; }
   .modal .note { margin: 14px 0 0; font-size: 12px; color: var(--mute); }
   .job .how { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); color: var(--mute); font-size: 15px; }
 
@@ -489,6 +492,7 @@
       <div style="margin-top:14px">© 더매치컴퍼니 (The Match Company). All rights reserved.</div>
     </div>
     <div class="links">
+      <a href="privacy.html"><b>개인정보처리방침</b></a>
       <a href="https://thematch.live/">Live</a>
     </div>
   </div>
@@ -509,6 +513,7 @@
     <label for="a5">방송 가능 시간</label><input id="a5" name="방송 가능 시간" placeholder="예: 평일 밤 9시~12시">
     <label for="a6">방송 경험 · 채널 링크</label><input id="a6" name="방송 경험·채널 링크" placeholder="없으면 비워 두세요">
     <label for="a7">간단한 자기소개</label><textarea id="a7" name="자기소개"></textarea>
+    <label class="agree"><input type="checkbox" name="개인정보 수집·이용 동의" value="동의함" required> <span>개인정보 수집·이용에 동의합니다 (필수) · <a href="privacy.html" target="_blank" rel="noopener">자세히 보기</a></span></label>
     <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
     <div class="btns"><button type="button" data-close>닫기</button><button type="submit" class="go">보내기</button></div>
     <p class="note">이름·나이·연락처만 적어도 지원할 수 있어요.</p>
@@ -539,6 +544,7 @@
       <div><label for="c6">희망 일정 (선택)</label><input id="c6" name="희망 일정" placeholder="예: 12월 중"></div>
     </div>
     <label for="c7">문의 내용</label><textarea id="c7" name="문의 내용" required></textarea>
+    <label class="agree"><input type="checkbox" name="개인정보 수집·이용 동의" value="동의함" required> <span>개인정보 수집·이용에 동의합니다 (필수) · <a href="privacy.html" target="_blank" rel="noopener">자세히 보기</a></span></label>
     <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
     <div class="btns"><button type="button" data-close>닫기</button><button type="submit" class="go">보내기</button></div>
     <p class="note">문의는 thematch.std@gmail.com 으로 접수됩니다. 급한 문의는 010-6725-6881</p>
