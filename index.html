@@ -203,6 +203,73 @@
   .modal .note { margin: 14px 0 0; font-size: 12px; color: var(--mute); }
   .job .how { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); color: var(--mute); font-size: 15px; }
 
+  /* 더매치 24 앱 (사용자 11-14 '더매치 24앱 출시 팝업 공지 띄워, 내용에도 넣고') */
+  .appIcon { position: relative; flex: none; display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(140deg, #ff2d55, #b3123a); box-shadow: 0 10px 24px -8px rgba(255,45,85,.6); }
+  .appIcon b { color: #fff; font-size: 28px; font-weight: 900; letter-spacing: -0.04em; }
+  .appIcon i { position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+  .stores { display: flex; gap: 10px; flex-wrap: wrap; }
+  .store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 12px; background: #fff; color: var(--ink); font-weight: 800; font-size: 17px; line-height: 1.1; transition: transform .2s; }
+  .store:hover { transform: translateY(-2px); }
+  .store svg { width: 24px; height: 24px; flex: none; }
+  .store small { display: block; font-size: 10px; font-weight: 600; letter-spacing: .04em; opacity: .65; }
+  .appCard { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; margin-top: 24px; padding: 48px 56px; border-radius: 24px; overflow: hidden; color: #fff; background: radial-gradient(90% 120% at 100% 0%, rgba(255,45,85,.55), transparent 60%), #161618; }
+  .appCard .top { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .appCard .new { display: block; width: max-content; padding: 5px 12px; border-radius: 99px; background: var(--red); font-size: 11px; font-weight: 800; letter-spacing: .2em; margin-bottom: 6px; }
+  .appCard h3 { margin: 0; font-size: 34px; letter-spacing: -0.03em; }
+  .appCard p { margin: 0 0 22px; color: #c4c4cc; }
+  .appCard ul { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; }
+  .appCard li { position: relative; padding-left: 22px; font-weight: 600; }
+  .appCard li::before { content: ""; position: absolute; left: 0; top: 11px; width: 10px; height: 2px; background: var(--red); }
+  .phone { justify-self: center; width: 230px; aspect-ratio: 9 / 19.5; padding: 10px; border-radius: 40px; background: #0b0b0d; box-shadow: 0 0 0 2px #2a2a2e, 0 40px 80px -30px rgba(0,0,0,.8); transform: rotate(4deg); }
+  .phone .scr { position: relative; height: 100%; border-radius: 31px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
+  .phone .bar { display: flex; align-items: center; gap: 6px; padding: 26px 14px 10px; font-size: 13px; font-weight: 800; }
+  .phone .bar .appIcon { width: 22px; height: 22px; border-radius: 6px; box-shadow: none; }
+  .phone .bar .appIcon b { font-size: 10px; } .phone .bar .appIcon i { display: none; }
+  .phone .vid { position: relative; aspect-ratio: 16 / 10; background: url(img/onair.jpg) center / cover; }
+  .phone .vid .onair { position: absolute; left: 8px; top: 8px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; border-radius: 4px; background: var(--red); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
+  .phone .vid .onair i { width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+  .phone .chat { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 12px; }
+  .phone .chat span { display: block; height: 9px; border-radius: 5px; background: #2a2a2e; }
+  .phone .chat span:nth-child(2n) { width: 70%; } .phone .chat span:nth-child(3n) { width: 85%; background: #3a1c25; }
+  .phone .in { margin: 0 12px 14px; height: 30px; border-radius: 99px; background: #1d1d20; }
+  .phone .tabs { display: flex; justify-content: space-around; padding: 10px 0 14px; border-top: 1px solid #222; }
+  .phone .tabs i { width: 16px; height: 16px; border-radius: 4px; background: #333; } .phone .tabs i:first-child { background: var(--red); }
+
+  /* 출시 팝업 */
+  .appPop { position: fixed; inset: 0; z-index: 120; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(10,10,10,.6); backdrop-filter: blur(4px); }
+  .appPop.open { display: flex; }
+  .appPop .box { width: 100%; max-width: 380px; border-radius: 24px; overflow: hidden; background: #fff; color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); animation: popIn .35s cubic-bezier(.2,.9,.3,1.2); }
+  @keyframes popIn { from { transform: translateY(16px) scale(.95); opacity: 0; } to { transform: none; opacity: 1; } }
+  .appPop .hd { padding: 30px 24px 26px; text-align: center; color: #fff; background: radial-gradient(110% 100% at 50% 0%, #ff2d55 0%, #b3123a 45%, #161618 100%); }
+  .appPop .hd .new { display: inline-block; padding: 5px 12px; border-radius: 99px; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.15); font-size: 11px; font-weight: 800; letter-spacing: .2em; }
+  .appPop .hd .appIcon { display: grid; margin: 18px auto 14px; width: 72px; height: 72px; border-radius: 18px; background: #161618; box-shadow: 0 12px 26px -8px rgba(0,0,0,.6); }
+  .appPop .hd .appIcon b { font-size: 32px; } .appPop .hd .appIcon i { background: var(--red); }
+  .appPop h3 { margin: 0; font-size: 28px; letter-spacing: -0.03em; }
+  .appPop .hd p { margin: 6px 0 0; font-size: 15px; color: rgba(255,255,255,.85); }
+  .appPop ul { list-style: none; margin: 0; padding: 22px 26px 6px; display: grid; gap: 10px; }
+  .appPop li { position: relative; padding-left: 20px; font-size: 15px; font-weight: 600; }
+  .appPop li::before { content: ""; position: absolute; left: 0; top: 11px; width: 10px; height: 2px; background: var(--red); }
+  .appPop .stores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 18px 20px 4px; }
+  .appPop .store { justify-content: center; padding: 10px 6px; background: var(--ink); color: #fff; font-size: 15px; }
+  .appPop .store.mine { background: var(--red); box-shadow: 0 10px 22px -8px rgba(255,45,85,.7); }
+  .appPop .more { display: block; padding: 14px 0 4px; text-align: center; font-size: 14px; font-weight: 700; color: var(--red); }
+  .appPop .ft { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; border-top: 1px solid var(--line); }
+  .appPop .ft button { padding: 15px 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--mute); cursor: pointer; }
+  .appPop .ft button + button { border-left: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+  @media (max-width: 760px) {
+    .appCard { grid-template-columns: 1fr; padding: 32px 26px 0; gap: 8px; }
+    .appCard h3 { font-size: 28px; }
+    .phone { width: 190px; margin-bottom: -120px; transform: none; }
+    .appCard { padding-bottom: 0; }
+    .appCard .stores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .appCard .store { justify-content: center; padding: 10px 6px; font-size: 14px; gap: 7px; }
+    .appCard .store svg { width: 20px; height: 20px; }
+    .appCard .store small { font-size: 9px; }
+    .appCard .top .appIcon { width: 56px; height: 56px; }
+    .appCard .top .appIcon b { font-size: 23px; }
+    .appCard .top .appIcon i { right: 7px; top: 7px; width: 7px; height: 7px; }
+  }
+
   /* 문의 */
   .contact { background: var(--ink); color: #fff; }
   .contact .label { color: #a1a1aa; }
@@ -423,6 +490,25 @@
         <a class="live" href="https://thematch.live/" style="align-self:flex-start"><span class="dot"></span>thematch.live</a>
       </div>
     </div>
+    <div class="appCard" id="app">
+      <div>
+        <div class="top"><span class="appIcon" aria-hidden="true"><b>24</b><i></i></span><div><span class="new en">NEW APP</span><h3>더매치 24 앱 출시</h3></div></div>
+        <p>365일 24시간 이어지는 더매치 라이브를 이제 앱으로 만나 보세요.</p>
+        <ul>
+          <li>지금 방송 중인 라이브를 앱에서 바로 시청</li>
+          <li>앱 안에서 실시간 채팅 참여</li>
+          <li>좋아하는 채널이 방송을 켜면 바로 알림</li>
+        </ul>
+        <div class="stores"><a class="store play" href="https://play.google.com/store/apps/details?id=kr.thematch.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.4 13.6 12l-9.4 9.6c-.4-.2-.7-.7-.7-1.3V3.7c0-.6.3-1.1.7-1.3Zm10.6 10.8 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.7 2.8 1.6c.9.5.9 1.4 0 1.9l-2.8 1.6-2.6-2.6 2.6-2.5ZM6.2 2.1l11 6.3-2.4 2.4-8.6-8.7Z"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="store ios" href="https://apps.apple.com/kr/app/id6833889706" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8C7 7.3 5.6 8.2 4.8 9.6c-1.6 2.8-.4 6.9 1.2 9.1.8 1.1 1.7 2.3 2.8 2.3s1.6-.7 2.9-.7 1.7.7 2.9.7 2-1.1 2.7-2.2c.9-1.3 1.2-2.5 1.2-2.6 0 0-2.3-.9-2.3-3.6ZM14.2 5.5c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3Z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+      </div>
+      <div class="phone" aria-hidden="true"><div class="scr">
+        <div class="bar"><span class="appIcon" aria-hidden="true"><b>24</b><i></i></span>더매치 24</div>
+        <div class="vid"><span class="onair en"><i></i>LIVE</span></div>
+        <div class="chat"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="in"></div>
+        <div class="tabs"><i></i><i></i><i></i><i></i><i></i></div>
+      </div></div>
+    </div>
   </div>
 </section>
 
@@ -521,6 +607,25 @@
     </div>
   </div>
 </footer>
+
+<div class="appPop" id="appPop" role="dialog" aria-modal="true" aria-labelledby="appPopTitle">
+  <div class="box">
+    <div class="hd">
+      <span class="new en">NEW APP</span>
+      <span class="appIcon" aria-hidden="true"><b>24</b><i></i></span>
+      <h3 id="appPopTitle">더매치 24 앱 출시!</h3>
+      <p>365일 24시간 더매치 라이브를 앱으로</p>
+    </div>
+    <ul>
+      <li>지금 방송 중인 라이브를 앱에서 바로</li>
+      <li>앱 안에서 실시간 채팅 참여</li>
+      <li>좋아하는 채널 방송 시작 알림</li>
+    </ul>
+    <div class="stores"><a class="store play" href="https://play.google.com/store/apps/details?id=kr.thematch.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.4 13.6 12l-9.4 9.6c-.4-.2-.7-.7-.7-1.3V3.7c0-.6.3-1.1.7-1.3Zm10.6 10.8 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.7 2.8 1.6c.9.5.9 1.4 0 1.9l-2.8 1.6-2.6-2.6 2.6-2.5ZM6.2 2.1l11 6.3-2.4 2.4-8.6-8.7Z"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="store ios" href="https://apps.apple.com/kr/app/id6833889706" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8C7 7.3 5.6 8.2 4.8 9.6c-1.6 2.8-.4 6.9 1.2 9.1.8 1.1 1.7 2.3 2.8 2.3s1.6-.7 2.9-.7 1.7.7 2.9.7 2-1.1 2.7-2.2c.9-1.3 1.2-2.5 1.2-2.6 0 0-2.3-.9-2.3-3.6ZM14.2 5.5c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3Z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+    <a class="more" href="#app" data-pop-close>앱 자세히 보기 ›</a>
+    <div class="ft"><button type="button" id="appPopToday">오늘 하루 보지 않기</button><button type="button" data-pop-close>닫기</button></div>
+  </div>
+</div>
 
 <div class="modal" id="apply" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
   <form>
@@ -643,6 +748,20 @@ for (const id in FORMS) {
     }
   });
 }
+
+// 더매치 24 앱 출시 팝업: 들어올 때마다 뜨고, '오늘 하루 보지 않기'면 그날은 안 뜸. 지원서·문의서 주소(#apply 등)로 들어오면 안 띄움
+(() => {
+  const pop = $("appPop"), today = new Date().toLocaleDateString("ko-KR");
+  const close = () => pop.classList.remove("open");
+  pop.addEventListener("click", (e) => { if (e.target === pop || e.target.closest("[data-pop-close]")) close(); });
+  $("appPopToday").addEventListener("click", () => { try { localStorage.setItem("tmc-app-pop", today); } catch {} close(); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  const ua = navigator.userAgent;
+  const mine = /iPhone|iPad|iPod/.test(ua) ? ".store.ios" : /Android/.test(ua) ? ".store.play" : null;
+  if (mine) pop.querySelector(mine).classList.add("mine");
+  let hide = false; try { hide = localStorage.getItem("tmc-app-pop") === today; } catch {}
+  if (!hide && !location.hash) setTimeout(() => { if (!document.querySelector(".modal.open")) pop.classList.add("open"); }, 600);
+})();
 </script>
 </body>
 </html>
