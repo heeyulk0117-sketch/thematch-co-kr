@@ -235,6 +235,7 @@
   .phone .tabs { display: flex; justify-content: space-around; padding: 10px 0 14px; border-top: 1px solid #222; }
   .phone .tabs i { width: 16px; height: 16px; border-radius: 4px; background: #333; } .phone .tabs i:first-child { background: var(--red); }
 
+  img.appIcon { display: block; object-fit: cover; background: #2a1036; }
   /* 출시 팝업 */
   .appPop { position: fixed; inset: 0; z-index: 120; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(10,10,10,.6); backdrop-filter: blur(4px); }
   .appPop.open { display: flex; }
@@ -492,7 +493,7 @@
     </div>
     <div class="appCard" id="app">
       <div>
-        <div class="top"><span class="appIcon" aria-hidden="true"><b>24</b><i></i></span><div><span class="new en">NEW APP</span><h3>The Match 24 app is here</h3></div></div>
+        <div class="top"><img class="appIcon" src="img/app-icon.png" alt="" width="64" height="64"><div><span class="new en">NEW APP</span><h3>The Match 24 app is here</h3></div></div>
         <p>The Match live, 24 hours a day, 365 days a year, now in an app.</p>
         <ul>
           <li>Watch what is live right now in the app</li>
@@ -502,7 +503,7 @@
         <div class="stores"><a class="store play" href="https://play.google.com/store/apps/details?id=kr.thematch.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.4 13.6 12l-9.4 9.6c-.4-.2-.7-.7-.7-1.3V3.7c0-.6.3-1.1.7-1.3Zm10.6 10.8 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.7 2.8 1.6c.9.5.9 1.4 0 1.9l-2.8 1.6-2.6-2.6 2.6-2.5ZM6.2 2.1l11 6.3-2.4 2.4-8.6-8.7Z"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="store ios" href="https://apps.apple.com/kr/app/id6833889706" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8C7 7.3 5.6 8.2 4.8 9.6c-1.6 2.8-.4 6.9 1.2 9.1.8 1.1 1.7 2.3 2.8 2.3s1.6-.7 2.9-.7 1.7.7 2.9.7 2-1.1 2.7-2.2c.9-1.3 1.2-2.5 1.2-2.6 0 0-2.3-.9-2.3-3.6ZM14.2 5.5c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3Z"/></svg><span><small>Download on the</small>App Store</span></a></div>
       </div>
       <div class="phone" aria-hidden="true"><div class="scr">
-        <div class="bar"><span class="appIcon" aria-hidden="true"><b>24</b><i></i></span>The Match 24</div>
+        <div class="bar"><img class="appIcon" src="img/app-icon.png" alt="" width="64" height="64">The Match 24</div>
         <div class="vid"><span class="onair en"><i></i>LIVE</span></div>
         <div class="chat"><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="in"></div>
@@ -612,7 +613,7 @@
   <div class="box">
     <div class="hd">
       <span class="new en">NEW APP</span>
-      <span class="appIcon" aria-hidden="true"><b>24</b><i></i></span>
+      <img class="appIcon" src="img/app-icon.png" alt="" width="64" height="64">
       <h3 id="appPopTitle">The Match 24 app is here!</h3>
       <p>The Match live, 24/7, in an app</p>
     </div>
