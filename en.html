@@ -124,7 +124,7 @@
   .flow span { color: var(--ink); }
   .flow i { font-style: normal; color: var(--red); margin: 0 14px; }
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card { position: relative; min-height: 400px; border-radius: 20px; overflow: hidden; color: #fff; background: #111; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; isolation: isolate; }
+  .card { position: relative; min-height: 400px; border-radius: 20px; overflow: hidden; color: #fff; background: #111; display: flex; flex-direction: column; justify-content: flex-end; padding: 76px 30px 30px; isolation: isolate; }
   .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s ease; }
   .card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,.55) 45%, rgba(10,10,10,.94) 100%); }
   .card:hover img { transform: scale(1.06); }
@@ -137,6 +137,7 @@
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tags span { font-size: 12px; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); backdrop-filter: blur(6px); }
   .card.wide { grid-column: span 2; }
+  .card.full { grid-column: 1 / -1; min-height: 340px; }
   .card.hl { box-shadow: 0 0 0 2px var(--red), 0 24px 60px -20px rgba(255,45,85,.55); }
   .card.hl::before { background: linear-gradient(180deg, rgba(10,10,10,.1) 0%, rgba(30,6,14,.6) 45%, rgba(10,10,10,.95) 100%); }
   .card .badge { position: absolute; top: 20px; right: 24px; font-size: 11px; font-weight: 800; letter-spacing: .2em; padding: 6px 12px; border-radius: 99px; background: var(--red); color: #fff; }
@@ -316,7 +317,7 @@
     .label { padding-top: 0; }
     .cards { grid-template-columns: 1fr 1fr; }
     .card.wide { grid-column: auto; }
-    .card:last-child { grid-column: span 2; }
+    .card.full { grid-column: auto; min-height: 400px; }
     .ipCard, .cgrid { grid-template-columns: 1fr; }
     .ipCard .pic { min-height: 200px; }
     .crew { grid-template-columns: 1fr; gap: 24px; }
@@ -351,7 +352,7 @@
     .vision, .cts { grid-template-columns: 1fr; }
     .vision div, .cts div { padding-right: 0; }
     .cards { grid-template-columns: 1fr; }
-    .card, .card.wide, .card:last-child { grid-column: auto; min-height: 380px; padding: 24px; }
+    .card, .card.wide, .card.full { grid-column: auto; min-height: 380px; padding: 72px 24px 24px; }
     .card .no { left: 24px; }
     .flow i { margin: 0 8px; }
     .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 160px 160px; }
@@ -437,18 +438,19 @@
       <div class="label en"><b>02</b>BUSINESS</div>
       <div>
         <h2>We plan, we shoot,<br>we build with tech.</h2>
-        <p>Scenario and planning, long-form, short-form, series and film production, AI film and software, design, and live broadcasting. One team takes content from idea to audience.</p>
+        <p>Scenario and planning, long-form, short-form, series and film production, AI film, PC software and mobile apps, design, and live broadcasting. One team takes content from idea to audience.</p>
       </div>
     </div>
-    <div class="flow en"><span>LONG-FORM</span><i>·</i><span>SHORT-FORM</span><i>·</i><span>SERIES</span><i>·</i><span>AI FILM</span><i>·</i><span>MOVIE</span><i>·</i><span>DESIGN</span><i>·</i><span>SCENARIO</span><i>·</i><span>LIVE</span></div>
+    <div class="flow en"><span>LONG-FORM</span><i>·</i><span>SHORT-FORM</span><i>·</i><span>SERIES</span><i>·</i><span>AI FILM</span><i>·</i><span>MOVIE</span><i>·</i><span>DESIGN</span><i>·</i><span>SCENARIO</span><i>·</i><span>SOFTWARE</span><i>·</i><span>APP</span><i>·</i><span>LIVE</span></div>
     <div class="cards">
       <article class="card"><img class="inv" src="img/plan.jpg" alt="" loading="lazy"><span class="no en">01</span><small class="en">PLANNING &amp; SCENARIO</small><h3>Planning · Scenario</h3><p>Turning ideas into stories. From scripts and screenplays to series structure, format development and storyboards, we draw the blueprint.</p><div class="tags"><span>Screenplay</span><span>Series Planning</span><span>Format</span><span>Storyboard</span></div></article>
       <article class="card wide"><img src="img/camera.jpg" alt="" loading="lazy"><span class="no en">02</span><small class="en">FILM &amp; VIDEO PRODUCTION</small><h3>Film &amp; Video Production</h3><p>Long-form, short-form, series and film. We shoot with cinema cameras, lighting and audio, and finish editing, color and sound in one team.</p><div class="tags"><span>Long-form</span><span>Short-form</span><span>Series</span><span>Film · Shorts</span><span>Editing · Color</span><span>Sound</span></div></article>
-      <article class="card wide hl"><img src="img/dev.jpg" alt="" loading="lazy"><span class="no en">03</span><span class="badge en">AI · TECH</span><small class="en">AI FILM &amp; SOFTWARE</small><h3>AI Film · Software</h3><p>We make video with AI and build our own production tools: generative video, automatic editing, subtitles and highlight extraction, upload and scheduling automation, web, apps and broadcast tools.</p><div class="tags"><span>AI Video</span><span>AI Editing · Subtitles</span><span>Upload Automation</span><span>Web · App</span><span>Broadcast Tools</span></div></article>
-      <article class="card"><img src="img/design.jpg" alt="" loading="lazy"><span class="no en">04</span><small class="en">DESIGN</small><h3>Design</h3><p>Brand identity, thumbnails, channel art, posters and motion graphics. We design the first impression of your content.</p><div class="tags"><span>Brand Design</span><span>Thumbnails · Channel Art</span><span>Motion Graphics</span></div></article>
-      <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">05</span><small class="en">CREATOR NETWORK</small><h3>Creator Network</h3><p>Channel launch and programming, Shorts distribution and growth management for every creator.</p><div class="tags"><span>Channel Ops</span><span>Shorts Distribution</span><span>Growth</span></div></article>
-      <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">BRAND PARTNERSHIP</small><h3>Brand Partnership</h3><p>With planning, production and distribution under one roof, we run branded content and ad campaigns from start to finish.</p><div class="tags"><span>Branded Content</span><span>Live Commerce</span><span>Ad Campaigns</span></div></article>
-      <article class="card"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">07</span><small class="en">LIVE BROADCAST</small><h3>Live Broadcast</h3><p>Multi-cam switching and real-time streaming, 24/7, 365 days. Interactive live shows made with the audience are our strength.</p><div class="tags"><span>Multi-cam Switching</span><span>Real-time Streaming</span><span>Interactive Format</span></div></article>
+      <article class="card"><img src="img/g-cinema.jpg" alt="" loading="lazy"><span class="no en">03</span><small class="en">AI FILM</small><h3>AI Film</h3><p>We make video with AI and automate editing: generative video, automatic editing and subtitles, highlight extraction, upload and scheduling automation.</p><div class="tags"><span>AI Video</span><span>AI Editing · Subtitles</span><span>Highlight Extraction</span><span>Upload Automation</span></div></article>
+      <article class="card wide hl"><img src="img/dev.jpg" alt="" loading="lazy"><span class="no en">04</span><span class="badge en">SOFTWARE</span><small class="en">SOFTWARE &amp; APP</small><h3>Software · App Development</h3><p>We build PC software, mobile apps and web services from planning to launch, including business tools tailored to your company: tax and accounting records, staff, attendance and payroll management.</p><div class="tags"><span>PC Software</span><span>Mobile Apps (iOS · Android)</span><span>Web Services</span><span>Tax · Accounting Records</span><span>Staff · Attendance · Payroll</span><span>Workflow Automation</span></div></article>
+      <article class="card"><img src="img/design.jpg" alt="" loading="lazy"><span class="no en">05</span><small class="en">DESIGN</small><h3>Design</h3><p>Logos and brand identity for companies and individuals, thumbnails, channel art, posters and motion graphics. We design the first impression of your brand and content.</p><div class="tags"><span>Logo Design (Company · Personal)</span><span>Brand Identity</span><span>Thumbnails · Channel Art</span><span>Motion Graphics</span></div></article>
+      <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">CREATOR NETWORK</small><h3>Creator Network</h3><p>Channel launch and programming, Shorts distribution and growth management for every creator.</p><div class="tags"><span>Channel Ops</span><span>Shorts Distribution</span><span>Growth</span></div></article>
+      <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">07</span><small class="en">BRAND PARTNERSHIP</small><h3>Brand Partnership</h3><p>With planning, production and distribution under one roof, we run branded content and ad campaigns from start to finish.</p><div class="tags"><span>Branded Content</span><span>Live Commerce</span><span>Ad Campaigns</span></div></article>
+      <article class="card full"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">08</span><small class="en">LIVE BROADCAST</small><h3>Live Broadcast</h3><p>Multi-cam switching and real-time streaming, 24/7, 365 days. Interactive live shows made with the audience are our strength.</p><div class="tags"><span>Multi-cam Switching</span><span>Real-time Streaming</span><span>Interactive Format</span></div></article>
     </div>
     <div class="bizCta"><p>Have a project in mind? Talk to us about planning, production and development in one place.</p><a class="bigBtn dark" href="#collab" data-collab>Work with Us →</a></div>
   </div>
