@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>더매치컴퍼니 회사소개서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  /* 회사소개서 원본: Edge 로 A4 가로 PDF 를 뽑는다. 홈페이지 문구·사진을 그대로 쓴다 */
+  @page { size: 297mm 210mm; margin: 0; }
+  :root { --ink: #0a0a0a; --soft: #f4f4f5; --line: #e4e4e7; --mute: #6b6b74; --red: #ff2d55; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif; color: var(--ink); letter-spacing: -0.015em; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pg { position: relative; width: 297mm; height: 210mm; overflow: hidden; page-break-after: always; padding: 18mm 20mm; background: #fff; }
+  .pg:last-child { page-break-after: auto; }
+  .dark { background: var(--ink); color: #fff; }
+  .tag { font-size: 10pt; font-weight: 800; letter-spacing: .24em; color: var(--red); }
+  h1 { margin: 0; font-size: 54pt; line-height: 1.05; letter-spacing: -0.04em; }
+  h2 { margin: 6mm 0 0; font-size: 28pt; line-height: 1.2; letter-spacing: -0.035em; }
+  p { margin: 0; }
+  .lead { margin-top: 5mm; font-size: 12pt; line-height: 1.7; color: var(--mute); max-width: 190mm; }
+  .dark .lead { color: rgba(255,255,255,.7); }
+  .foot { position: absolute; left: 20mm; right: 20mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 8.5pt; color: var(--mute); }
+  .dark .foot { color: rgba(255,255,255,.5); }
+  .logo { height: 9mm; }
+  .ph { background: center / cover no-repeat #18181b; border-radius: 4mm; }
+
+  /* 표지 */
+  .cover { padding: 0; }
+  .cover .bg { position: absolute; inset: 0; background: url(img/studio.jpg) center 40% / cover; opacity: .5; }
+  .cover .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,.95) 30%, rgba(10,10,10,.3)); }
+  .cover .in { position: absolute; left: 22mm; bottom: 26mm; right: 22mm; }
+  .cover .logo { height: 12mm; margin-bottom: 18mm; }
+  .cover h1 em { font-style: normal; color: var(--red); }
+  .cover .sub { margin-top: 8mm; font-size: 15pt; color: rgba(255,255,255,.8); }
+  .cover .yr { position: absolute; right: 22mm; top: 18mm; font-size: 10pt; letter-spacing: .24em; font-weight: 800; color: rgba(255,255,255,.6); }
+
+  /* 개요 */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14mm; margin-top: 10mm; }
+  table.kv { width: 100%; border-collapse: collapse; font-size: 11pt; }
+  table.kv th, table.kv td { text-align: left; padding: 3.2mm 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.kv th { width: 34mm; color: var(--mute); font-weight: 600; }
+  .vis { display: grid; gap: 4mm; }
+  .vis div { padding: 5mm 6mm; border-radius: 4mm; background: var(--soft); }
+  .vis b { display: block; font-size: 13pt; margin: 1mm 0; }
+  .vis span { font-size: 8.5pt; letter-spacing: .2em; font-weight: 800; color: var(--red); }
+  .vis p { font-size: 10pt; color: var(--mute); }
+
+  /* 사업 개요 */
+  .grid7 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 9mm; }
+  .bx { position: relative; height: 52mm; border-radius: 4mm; overflow: hidden; color: #fff; padding: 5mm; display: flex; flex-direction: column; justify-content: flex-end; background: #111 center / cover; }
+  .bx::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.1), rgba(10,10,10,.92)); }
+  .bx > * { position: relative; }
+  .bx small { font-size: 7.5pt; letter-spacing: .18em; font-weight: 800; color: var(--red); }
+  .bx b { font-size: 14pt; }
+  .bx .n { position: absolute; top: 4mm; left: 5mm; font-size: 9pt; font-weight: 800; color: rgba(255,255,255,.7); }
+  .bx.hl { box-shadow: 0 0 0 .6mm var(--red); }
+  .more { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; border-radius: 4mm; background: var(--red); color: #fff; font-size: 11pt; font-weight: 800; letter-spacing: .08em; text-align: center; padding: 4mm; line-height: 1.4; }
+
+  /* 상세 페이지 */
+  .split { display: grid; grid-template-columns: 1.05fr 1fr; gap: 12mm; height: 100%; }
+  .split .ph { height: 100%; }
+  .det h2 { margin-top: 4mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 7mm; }
+  .chips span { font-size: 9.5pt; padding: 1.6mm 4mm; border-radius: 99px; border: 1px solid var(--line); }
+  .dark .chips span { border-color: rgba(255,255,255,.25); }
+  .pts { margin: 8mm 0 0; padding: 0; list-style: none; display: grid; gap: 4mm; }
+  .pts li { padding-left: 6mm; position: relative; font-size: 11pt; line-height: 1.6; }
+  .pts li::before { content: ""; position: absolute; left: 0; top: 2.4mm; width: 2mm; height: 2mm; border-radius: 50%; background: var(--red); }
+  .pts li b { display: block; }
+  .pts li span { color: var(--mute); font-size: 10pt; }
+  .dark .pts li span { color: rgba(255,255,255,.65); }
+  .badge { display: inline-block; padding: 1.4mm 4mm; border-radius: 99px; background: var(--red); color: #fff; font-size: 8.5pt; font-weight: 800; letter-spacing: .2em; }
+
+  /* 라이브·크리에이터 */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 10mm; }
+  .stat { padding: 7mm; border-radius: 4mm; background: #18181b; }
+  .stat .big { font-size: 40pt; font-weight: 900; letter-spacing: -0.05em; line-height: 1; }
+  .stat .big em { font-style: normal; color: var(--red); }
+  .stat b { display: block; margin-top: 3mm; font-size: 12pt; }
+  .stat p { margin-top: 1.5mm; font-size: 9.5pt; color: rgba(255,255,255,.6); line-height: 1.6; }
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 6mm; height: 46mm; }
+
+  /* 스튜디오 */
+  .gal { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4mm; margin-top: 8mm; height: 118mm; }
+  .gal .ph { position: relative; }
+  .gal .ph:first-child { grid-row: 1 / 3; }
+  .gal .ph i { position: absolute; left: 4mm; bottom: 3mm; font-style: normal; font-size: 8pt; font-weight: 800; letter-spacing: .2em; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+
+  /* 조직도 */
+  .org { margin-top: 8mm; }
+  .ceo { width: max-content; margin: 0 auto; padding: 4mm 12mm; border-radius: 4mm; background: var(--ink); color: #fff; text-align: center; position: relative; }
+  .ceo span, .staff span { display: block; font-size: 7.5pt; letter-spacing: .22em; font-weight: 800; color: var(--red); }
+  .ceo b { font-size: 14pt; }
+  .stem { width: .5mm; height: 14mm; background: var(--ink); margin: 0 auto; position: relative; }
+  .staff { position: absolute; left: calc(100% + 30mm); top: 3mm; width: max-content; padding: 2.5mm 6mm; border: .5mm dashed #a1a1aa; border-radius: 3mm; background: #fff; text-align: center; }
+  .staff::before { content: ""; position: absolute; right: 100%; top: 50%; width: 30mm; border-top: .5mm dashed #a1a1aa; }
+  .staff b { font-size: 10pt; color: var(--ink); }
+  .bar { height: .5mm; background: var(--ink); margin: 0 12.5%; }
+  .ogs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; }
+  .og { position: relative; padding-top: 8mm; }
+  .og::before { content: ""; position: absolute; left: 50%; top: 0; width: .5mm; height: 8mm; background: var(--ink); }
+  .ob { padding: 4mm; border-radius: 3mm 3mm 0 0; background: var(--ink); color: #fff; }
+  .ob span { display: block; font-size: 7pt; letter-spacing: .2em; font-weight: 800; color: var(--red); }
+  .ob b { font-size: 12pt; }
+  .og ul { margin: 0; padding: 2mm 4mm; list-style: none; background: var(--soft); border-radius: 0 0 3mm 3mm; }
+  .og li { padding: 2.2mm 0; border-bottom: 1px solid var(--line); font-size: 10pt; font-weight: 600; }
+  .og li:last-child { border-bottom: 0; }
+  .og li small { display: block; font-size: 7.5pt; color: var(--mute); font-weight: 500; }
+
+  /* 진행 과정 + 연락처 */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; margin-top: 9mm; }
+  .st { padding: 6mm; border-radius: 4mm; border: 1px solid #3f3f46; }
+  .st .n { font-size: 26pt; font-weight: 900; color: var(--red); letter-spacing: -0.04em; line-height: 1; }
+  .st b { display: block; margin-top: 4mm; font-size: 13pt; }
+  .st p { margin-top: 2mm; font-size: 9.5pt; color: rgba(255,255,255,.65); line-height: 1.6; }
+  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 10mm; margin-top: 10mm; padding: 8mm 9mm; border-radius: 5mm; background: linear-gradient(120deg, #ff2d55, #b3123a); }
+  .contact h3 { margin: 0; font-size: 20pt; letter-spacing: -0.03em; }
+  .contact p { margin-top: 2mm; font-size: 10.5pt; color: rgba(255,255,255,.85); }
+  .contact table { font-size: 11pt; border-collapse: collapse; }
+  .contact th { text-align: left; padding: 1.4mm 6mm 1.4mm 0; color: rgba(255,255,255,.75); font-weight: 600; }
+  .contact td { padding: 1.4mm 0; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- 1 표지 -->
+<section class="pg dark cover">
+  <div class="bg"></div>
+  <div class="yr">COMPANY PROFILE 2026</div>
+  <div class="in">
+    <img class="logo" src="tmc-logo-w.svg" alt="TMC">
+    <div class="tag">THE MATCH COMPANY</div>
+    <h1 style="margin-top:5mm">Live Media<br>That <em>Connects</em> People.</h1>
+    <p class="sub">기획 · 시나리오 · 영상 제작 · AI 영상 · 프로그램·앱·게임 개발 · 디자인 · 라이브</p>
+  </div>
+</section>
+
+<!-- 2 회사 개요 -->
+<section class="pg">
+  <div class="tag">01 · COMPANY</div>
+  <h2>보는 방송에서 참여하는 미디어로.</h2>
+  <p class="lead">더매치컴퍼니는 영상 기획·시나리오·제작부터 AI 영상, PC 프로그램·모바일 앱·게임 개발, 디자인, 라이브 방송까지 아우르는 미디어 컴퍼니입니다. 기획·제작·송출부터 채널 운영과 숏폼 유통까지, 콘텐츠의 전 과정을 한 회사 안에서 완성합니다.</p>
+  <div class="two">
+    <table class="kv">
+      <tr><th>회사명</th><td>더매치컴퍼니 (The Match Company)</td></tr>
+      <tr><th>상호</th><td>더매치스튜디오</td></tr>
+      <tr><th>사업자등록번호</th><td>592-88-03391</td></tr>
+      <tr><th>주소</th><td>경기도 용인시 처인구 양지읍 평촌로43번길 28-24<br>1층, 2층, 3층</td></tr>
+      <tr><th>사업 분야</th><td>영상 기획·제작, AI 영상, 프로그램·앱·게임 개발(업무 프로그램 포함), 디자인(회사·개인 로고), 라이브 방송, 크리에이터 네트워크, 브랜드 파트너십</td></tr>
+      <tr><th>웹사이트</th><td>thematch.co.kr · thematch.live</td></tr>
+    </table>
+    <div class="vis">
+      <div><span>MISSION</span><b>사람을 잇는 콘텐츠</b><p>화면 너머의 시청자와 함께 만들어 가는 콘텐츠 경험을 만듭니다.</p></div>
+      <div><span>PRODUCTION</span><b>365일 24시간 라이브</b><p>여러 채널이 시간대를 나눠 하루 24시간, 1년 365일 라이브를 이어 갑니다.</p></div>
+      <div><span>NETWORK</span><b>크리에이터와 함께 성장</b><p>크리에이터별 채널을 열고 제작·편집·운영을 회사가 함께 책임집니다.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>02</span></div>
+</section>
+
+<!-- 3 사업 분야 한눈에 -->
+<section class="pg">
+  <div class="tag">02 · BUSINESS</div>
+  <h2>기획하고, 찍고, 기술로 만듭니다.</h2>
+  <p class="lead">콘텐츠가 만들어지고 시청자에게 닿는 모든 과정을 한 팀으로 해냅니다.</p>
+  <div class="grid7">
+    <div class="bx" style="background-image:url(img/plan_dark.jpg)"><span class="n">01</span><small>PLANNING &amp; SCENARIO</small><b>기획 · 시나리오</b></div>
+    <div class="bx" style="background-image:url(img/camera.jpg)"><span class="n">02</span><small>FILM &amp; VIDEO</small><b>영상 제작</b></div>
+    <div class="bx" style="background-image:url(img/g-cinema.jpg)"><span class="n">03</span><small>AI FILM</small><b>AI 영상</b></div>
+    <div class="bx hl" style="background-image:url(img/dev.jpg)"><span class="n">04</span><small>SOFTWARE · APP · GAME</small><b>프로그램 · 앱 · 게임 개발</b></div>
+    <div class="bx" style="background-image:url(img/design.jpg)"><span class="n">05</span><small>DESIGN</small><b>디자인</b></div>
+    <div class="bx" style="background-image:url(img/tripod.jpg)"><span class="n">06</span><small>CREATOR NETWORK</small><b>크리에이터 네트워크</b></div>
+    <div class="bx" style="background-image:url(img/lounge.jpg)"><span class="n">07</span><small>BRAND PARTNERSHIP</small><b>브랜드 파트너십</b></div>
+    <div class="bx" style="background-image:url(img/console.jpg)"><span class="n">08</span><small>LIVE BROADCAST</small><b>라이브 방송</b></div>
+    <div class="more">LONG-FORM · SHORT-FORM · SERIES · AI FILM · MOVIE · DESIGN · SCENARIO · SOFTWARE · APP · GAME · LIVE</div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>03</span></div>
+</section>
+
+<!-- 4 기획·제작 -->
+<section class="pg">
+  <div class="split">
+    <div class="ph" style="background-image:url(img/camera.jpg)"></div>
+    <div class="det">
+      <div class="tag">PLANNING · PRODUCTION</div>
+      <h2>아이디어를 이야기로,<br>이야기를 영상으로.</h2>
+      <ul class="pts">
+        <li><b>기획 · 시나리오</b><span>시나리오·각본 집필부터 시리즈 구성, 포맷 개발, 콘티까지 콘텐츠의 설계도를 그립니다.</span></li>
+        <li><b>영상 제작</b><span>롱폼과 숏폼, 시리즈물에서 영화까지. 시네마 카메라와 조명·오디오로 촬영합니다.</span></li>
+        <li><b>포스트프로덕션</b><span>편집·색보정·사운드·모션그래픽까지 한 팀에서 완성합니다.</span></li>
+      </ul>
+      <div class="chips"><span>시나리오·각본</span><span>시리즈 기획</span><span>롱폼</span><span>숏폼</span><span>시리즈물</span><span>영화·단편</span><span>편집·색보정</span><span>사운드</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>04</span></div>
+</section>
+
+<!-- 5 AI·개발 -->
+<section class="pg dark">
+  <div class="split">
+    <div class="det">
+      <span class="badge">AI · SOFTWARE</span>
+      <h2>AI로 만들고,<br>프로그램·앱·게임을 개발합니다.</h2>
+      <p class="lead">제작에 쓰는 도구부터 회사·서비스용 PC 프로그램과 모바일 앱, 게임까지 직접 기획하고 개발합니다.</p>
+      <ul class="pts">
+        <li><b>AI 영상 · 편집 자동화</b><span>AI 영상 생성·합성, 하이라이트 추출과 자막·편집 자동화로 제작 속도를 높입니다.</span></li>
+        <li><b>PC 프로그램 · 모바일 앱 · 웹</b><span>기획부터 출시까지 직접 개발합니다. 더매치 24 앱(iOS·Android)도 직접 만들었습니다.</span></li>
+        <li><b>게임 개발</b><span>더매치에서 게임을 직접 개발해 왔고, 지금도 개발하고 있습니다.</span></li>
+        <li><b>회사 업무 프로그램</b><span>세무·회계 자료 정리, 직원·근태·급여 관리처럼 회사에서 쓰는 프로그램을 회사에 꼭 맞게 만듭니다.</span></li>
+        <li><b>업로드 · 편성 자동화</b><span>여러 채널의 업로드와 예약, 편성을 시스템으로 운영합니다.</span></li>
+      </ul>
+    </div>
+    <div class="ph" style="background-image:url(img/dev.jpg)"></div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>05</span></div>
+</section>
+
+<!-- 6 디자인 · 브랜드 -->
+<section class="pg">
+  <div class="split">
+    <div class="ph" style="background-image:url(img/design.jpg)"></div>
+    <div class="det">
+      <div class="tag">DESIGN · BRAND PARTNERSHIP</div>
+      <h2>첫인상부터 캠페인까지.</h2>
+      <ul class="pts">
+        <li><b>디자인</b><span>회사·개인 로고와 브랜드 아이덴티티부터 썸네일·채널 아트, 포스터, 모션그래픽까지 첫인상을 디자인합니다.</span></li>
+        <li><b>브랜디드 콘텐츠</b><span>브랜드의 메시지를 영상·숏폼·라이브 포맷에 맞게 기획하고 제작합니다.</span></li>
+        <li><b>광고 캠페인 · 라이브 커머스</b><span>기획부터 제작·유통까지 가진 팀이라 캠페인을 처음부터 끝까지 맡습니다.</span></li>
+      </ul>
+      <div class="chips"><span>회사·개인 로고</span><span>브랜드 디자인</span><span>썸네일·채널 아트</span><span>모션그래픽</span><span>브랜디드 콘텐츠</span><span>라이브 커머스</span><span>광고 캠페인</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>06</span></div>
+</section>
+
+<!-- 7 라이브 · 크리에이터 -->
+<section class="pg dark">
+  <div class="tag">LIVE · CREATOR NETWORK</div>
+  <h2>365일 24시간, 라이브는 계속됩니다.</h2>
+  <p class="lead">멀티캠 스위칭과 실시간 송출로 여러 채널의 라이브를 운영하고, 크리에이터마다 채널을 열어 함께 키웁니다.</p>
+  <div class="stats">
+    <div class="stat"><div class="big">10<em>+</em></div><b>함께하는 크리에이터</b><p>10명 이상 다수의 크리에이터가 더매치컴퍼니와 함께 방송합니다.</p></div>
+    <div class="stat"><div class="big">24<em>h</em></div><b>365일 24시간 라이브</b><p>여러 채널이 시간대를 나눠 하루 24시간 라이브를 이어 갑니다.</p></div>
+    <div class="stat"><div class="big">1<em>:</em>1</div><b>크리에이터 1:1 관리</b><p>채널 개설·편성·쇼츠 유통·성장 관리까지 회사가 함께 맡습니다.</p></div>
+  </div>
+  <div class="strip">
+    <div class="ph" style="background-image:url(img/console.jpg)"></div>
+    <div class="ph" style="background-image:url(img/switcher.jpg)"></div>
+    <div class="ph" style="background-image:url(img/onair.jpg)"></div>
+    <div class="ph" style="background-image:url(img/tripod.jpg)"></div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서 · thematch.live</span><span>07</span></div>
+</section>
+
+<!-- 8 스튜디오 -->
+<section class="pg">
+  <div class="tag">03 · STUDIO</div>
+  <h2>기획부터 송출까지, 제작의 모든 단계를 직접.</h2>
+  <div class="gal">
+    <div class="ph" style="background-image:url(img/g-cinema.jpg)"><i>CAMERA</i></div>
+    <div class="ph" style="background-image:url(img/g-rig.jpg)"><i>LIGHTING</i></div>
+    <div class="ph" style="background-image:url(img/g-audio.jpg)"><i>AUDIO</i></div>
+    <div class="ph" style="background-image:url(img/switcher.jpg)"><i>LIVE SWITCHING</i></div>
+    <div class="ph" style="background-image:url(img/g-lens.jpg)"><i>CINEMA LENS</i></div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>08</span></div>
+</section>
+
+<!-- 9 조직도 -->
+<section class="pg">
+  <div class="tag">04 · ORGANIZATION</div>
+  <h2>조직도</h2>
+  <div class="org">
+    <div class="ceo"><span>CEO</span><b>대표이사</b><div class="staff"><span>STRATEGY OFFICE</span><b>경영전략실</b></div></div>
+    <div class="stem"></div>
+    <div class="bar"></div>
+    <div class="ogs">
+      <div class="og"><div class="ob"><span>CONTENT</span><b>콘텐츠본부</b></div><ul><li>기획·제작팀<small>Planning &amp; Production</small></li><li>포스트프로덕션팀<small>Post-Production</small></li><li>디자인팀<small>Design</small></li></ul></div>
+      <div class="og"><div class="ob"><span>TECH</span><b>기술본부</b></div><ul><li>AI 영상팀<small>AI Film</small></li><li>개발팀<small>Software</small></li></ul></div>
+      <div class="og"><div class="ob"><span>LIVE</span><b>라이브사업본부</b></div><ul><li>라이브운영팀<small>Live Operations</small></li><li>크리에이터매니지먼트팀<small>Creator Management</small></li></ul></div>
+      <div class="og"><div class="ob"><span>BUSINESS</span><b>경영지원본부</b></div><ul><li>브랜드사업팀<small>Brand Partnership</small></li><li>경영지원팀<small>Management Support</small></li></ul></div>
+    </div>
+  </div>
+  <div class="foot"><span>더매치컴퍼니 회사소개서</span><span>09</span></div>
+</section>
+
+<!-- 10 진행 과정 + 연락처 -->
+<section class="pg dark">
+  <div class="tag">05 · WORK WITH US</div>
+  <h2>협업은 이렇게 진행됩니다.</h2>
+  <div class="steps">
+    <div class="st"><div class="n">01</div><b>문의 · 상담</b><p>목표와 일정, 예산을 듣고 필요한 작업 범위를 함께 정합니다.</p></div>
+    <div class="st"><div class="n">02</div><b>기획 제안</b><p>콘셉트·구성안·시나리오와 제작 일정을 제안합니다.</p></div>
+    <div class="st"><div class="n">03</div><b>제작</b><p>촬영·AI 영상·디자인·개발을 한 팀에서 진행하고 중간 결과를 공유합니다.</p></div>
+    <div class="st"><div class="n">04</div><b>납품 · 유통</b><p>최종본을 납품하고, 필요하면 채널 업로드와 숏폼·라이브 유통까지 맡습니다.</p></div>
+  </div>
+  <div class="contact">
+    <div><h3>함께 만들 프로젝트가 있나요?</h3><p>thematch.co.kr 에서 ‘협업 문의’를 누르거나 아래 연락처로 연락 주세요.</p></div>
+    <table>
+      <tr><th>전화</th><td>010-6725-6881</td></tr>
+      <tr><th>이메일</th><td>thematch.std@gmail.com</td></tr>
+      <tr><th>카카오톡</th><td>match</td></tr>
+      <tr><th>웹사이트</th><td>thematch.co.kr</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>© 더매치컴퍼니 (The Match Company) · 상호 더매치스튜디오 · 사업자등록번호 592-88-03391</span><span>10</span></div>
+</section>
+
+</body>
+</html>
