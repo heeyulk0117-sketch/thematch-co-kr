@@ -282,6 +282,39 @@
   .bigBtn { flex: none; padding: 18px 34px; border-radius: 99px; background: #fff; color: var(--ink); font-size: 18px; font-weight: 800; transition: transform .2s; }
   .bigBtn:hover { transform: translateX(4px); }
   .bigBtn.dark { background: var(--ink); color: #fff; }
+  /* 직접 만든 것 */
+  .own { position: relative; overflow: hidden; margin-top: 28px; padding: clamp(32px, 5vw, 60px); border-radius: 24px; background: var(--ink); color: #fff; }
+  .own::after { content: ""; position: absolute; left: -140px; bottom: -160px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(255,45,85,.38), transparent 65%); pointer-events: none; }
+  .own > * { position: relative; z-index: 1; }
+  .own .k { color: var(--red); font-size: 12px; letter-spacing: .24em; font-weight: 800; }
+  .own h3 { margin: 12px 0 0; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.2; letter-spacing: -0.04em; }
+  .own h3 em { font-style: normal; color: var(--red); }
+  .own .mbr { display: none; }
+  .own .sub { margin: 16px 0 0; max-width: 640px; color: rgba(255,255,255,.72); font-size: 17px; }
+  .ownGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 36px; }
+  .ownGrid > * { display: flex; flex-direction: column; padding: 22px 20px 20px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: inherit; }
+  .ownGrid a:hover { border-color: var(--red); }
+  .ownGrid small { color: var(--red); font-size: 11px; letter-spacing: .2em; font-weight: 800; }
+  .ownGrid b { display: block; margin: 14px 0 4px; font-size: clamp(24px, 2.4vw, 30px); font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; }
+  .ownGrid b em { font-style: normal; color: var(--red); }
+  .ownGrid h4 { margin: 0 0 8px; font-size: 15px; color: rgba(255,255,255,.9); }
+  .ownGrid p { margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.62); }
+  .ownGrid .go { margin-top: auto; padding-top: 12px; font-size: 13px; font-weight: 700; color: var(--red); }
+  .own .ft { margin: 24px 0 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.14); font-size: 16px; font-weight: 700; }
+  .own .ft span { color: var(--red); }
+  @media (max-width: 1100px) { .ownGrid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 760px) {
+    .ownGrid { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+    .ownGrid > * { padding: 18px 20px 16px; }
+    .ownGrid b { margin: 10px 0 2px; font-size: 24px; }
+    .ownGrid b br { display: none; }
+    .ownGrid h4 { margin: 0 0 6px; }
+    .ownGrid .go { padding-top: 8px; }
+    .own .sub { font-size: 15px; }
+    .own h3 { font-size: 24px; }
+    .own .ft { font-size: 15px; }
+    .own .mbr { display: inline; }
+  }
   .bizCta { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 28px; padding: 24px 28px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
   .bizCta p { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
   .pdfBtn { display: inline-block; margin: 12px 0 0 18px; padding: 8px 16px; border-radius: 99px; border: 1px solid rgba(255,255,255,.6); color: #fff; font-size: 14px; font-weight: 700; }
@@ -451,6 +484,19 @@
       <article class="card"><img src="img/tripod.jpg" alt="" loading="lazy"><span class="no en">06</span><small class="en">CREATOR NETWORK</small><h3>Creator Network</h3><p>Channel launch and programming, Shorts distribution and growth management for every creator.</p><div class="tags"><span>Channel Ops</span><span>Shorts Distribution</span><span>Growth</span></div></article>
       <article class="card"><img src="img/lounge.jpg" alt="" loading="lazy"><span class="no en">07</span><small class="en">BRAND PARTNERSHIP</small><h3>Brand Partnership</h3><p>With planning, production and distribution under one roof, we run branded content and ad campaigns from start to finish.</p><div class="tags"><span>Branded Content</span><span>Live Commerce</span><span>Ad Campaigns</span></div></article>
       <article class="card full"><img src="img/console.jpg" alt="" loading="lazy"><span class="no en">08</span><small class="en">LIVE BROADCAST</small><h3>Live Broadcast</h3><p>Multi-cam switching and real-time streaming, 24/7, 365 days. Interactive live shows made with the audience are our strength.</p><div class="tags"><span>Multi-cam Switching</span><span>Real-time Streaming</span><span>Interactive Format</span></div></article>
+    </div>
+    <div class="own" id="own">
+      <span class="k en">WHY THE MATCH</span>
+      <h3>A content company<br><em>that builds apps, games<br class="mbr"> and software.</em></h3>
+      <p class="sub">We don't stop at planning. We ship real products and run them every day.</p>
+      <div class="ownGrid">
+        <div><small class="en">LIVE</small><b>24/7 <br>365</b><h4>Always-on live</h4><p>Channels take turns across the day, so we broadcast every single day.</p></div>
+        <a href="#app"><small class="en">APP</small><b>The Match 24</b><h4>Our own app</h4><p>Out on iOS and Android, with live alerts and real-time chat.</p><span class="go">See the app ›</span></a>
+        <div><small class="en">GAME</small><b>New game <br>in development</b><h4>Our own games</h4><p>We have made games before and are building a new one now.</p></div>
+        <div><small class="en">SOFTWARE</small><b>Donation <br>management</b><h4>Software we use</h4><p>From donation management to automatic Shorts uploads, we build our own tools.</p></div>
+        <div><small class="en">CREATORS</small><b>10<em>+</em></b><h4>Creators with us</h4><p>We share production, editing and channel operations with every creator.</p></div>
+      </div>
+      <p class="ft">That is why we can tie live shows, the app and games into <span>one campaign</span>.</p>
     </div>
     <div class="bizCta"><p>Have a project in mind? Talk to us about planning, production and development in one place.</p><a class="bigBtn dark" href="#collab" data-collab>Work with Us →</a></div>
   </div>
