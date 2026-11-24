@@ -398,6 +398,9 @@
     footer .info span { display: block; white-space: normal; }
     footer .info span + span::before { display: none; }
   }
+    /* 줄 끝에 한 단어만 남지 않게 */
+    p, li, h4 { text-wrap: pretty; }
+    h1, h2, h3 { text-wrap: balance; }
 </style>
 </head>
 <body>
@@ -573,7 +576,7 @@
     <div class="crew">
       <div class="big en">10<em>+</em><small>명</small></div>
       <div>
-        <h3>10명 이상의 크리에이터가<br>더매치와 함께 라이브 방송을 합니다.</h3>
+        <h3>크리에이터마다<br>채널을 함께 키웁니다.</h3>
         <p>각 크리에이터의 방송 기획·제작·편집·운영을 회사가 함께 맡습니다.</p>
         <div class="tags"><span>제작 지원</span><span>쇼츠 유통</span><span>성장 관리</span></div>
       </div>
